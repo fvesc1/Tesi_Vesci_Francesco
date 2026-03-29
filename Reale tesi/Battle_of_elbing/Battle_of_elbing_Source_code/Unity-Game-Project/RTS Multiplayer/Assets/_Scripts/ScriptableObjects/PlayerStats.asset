@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHP: 500
   popCap: 10
-  money: 100000
+  money: 1
   passiveIncome: 5
   passiveIncomeRate: 1
   ammo: 0
