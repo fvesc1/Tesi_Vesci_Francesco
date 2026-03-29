@@ -16,6 +16,7 @@ public class UnitController : MonoBehaviour
 
     void Update()
     {
+        /*
         if (Input.GetMouseButtonDown(1))
         {
             ray = cam.ScreenPointToRay(Input.mousePosition);
@@ -30,5 +31,7 @@ public class UnitController : MonoBehaviour
                 //agent.isStopped = false;
             }
         }
+    */
     }
+
 }
