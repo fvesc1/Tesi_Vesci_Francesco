@@ -23,12 +23,14 @@ public class BarracksScript : MonoBehaviour
     }
     public void ShowItemList()
     {
+        /*
         RectTransform unitListRectTransform = itemList.GetComponent<RectTransform>();
         float unitListWidth = unitListRectTransform.rect.width;
         float unitListHeight = unitListRectTransform.rect.height;
         Vector3 unitListPosition = new Vector3(Input.mousePosition.x + (unitListWidth / 4), Input.mousePosition.y - (unitListHeight / 4), 0f);
         unitListRectTransform.position = unitListPosition;
         itemList.SetActive(true);
+    */
     }
     public void HideItemList()
     {
