@@ -1,5 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+
+
+//per  ora non funziona a meno che non si aumenti il sight range a 1500
+
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,23 +14,30 @@ public class SoldierBrain : MonoBehaviour
     public float attackRange = 5f;
     public string enemyTag = "Enemy";
 
+    [Header("Sensori per ASP (Sola Lettura)")]
+    public int myCurrentHealth;
+    public float myHealthPercentage; //la percentuale e meglio del valore per asp soprattuto avendo conscript heavy e sniper
+
     private NavMeshAgent agent;
     private Transform currentTarget;
-    
-    // Riferimento al sistema di puntamento originale del gioco
     private AiTargetingSystem originalTargetingSystem;
+    private UnitScript myUnitScript; //da qui prendo la vita della friendly unit
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        
-        // Prendiamo lo script originale per passargli il bersaglio dopo
         originalTargetingSystem = GetComponent<AiTargetingSystem>();
+        
+        // Colleghiamo il sensore della vita
+        myUnitScript = GetComponent<UnitScript>();
     }
 
     void Update()
     {
-        // Se il nemico è morto o non ne abbiamo uno, cerchiamo
+        // 1. FASE SENSORI: Aggiorniamo i dati per ASP
+        UpdateSensors();
+
+        // 2. FASE ATTUATORI (Temporanea finché non c'è ASP)
         if (currentTarget == null)
         {
             SearchForEnemy();
@@ -37,23 +48,29 @@ public class SoldierBrain : MonoBehaviour
         }
     }
 
+    void UpdateSensors()
+    {
+        if (myUnitScript != null && myUnitScript.unit != null)
+        {
+            myCurrentHealth = myUnitScript.currentHealth;
+            
+            // Calcoliamo la percentuale di vita (da 0 a 100)
+            myHealthPercentage = ((float)myCurrentHealth / myUnitScript.unit.health) * 100f;
+        }
+    }
+
     void SearchForEnemy()
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, sightRange);
-        
         foreach (Collider hit in hits)
         {
             if (hit.CompareTag(enemyTag))
             {
                 currentTarget = hit.transform;
-                
-                // Diciamo allo script originale CHI è il bersaglio, così inizia a caricare l'arma
                 if (originalTargetingSystem != null)
                 {
                     originalTargetingSystem.target = currentTarget.gameObject;
                 }
-                
-                Debug.Log(gameObject.name + ": Bersaglio acquisito -> " + currentTarget.name);
                 break;
             }
         }
@@ -65,28 +82,22 @@ public class SoldierBrain : MonoBehaviour
 
         if (distance > attackRange)
         {
-            // Insegui
             agent.isStopped = false;
             agent.SetDestination(currentTarget.position);
         }
         else
         {
-            // Frena e ruota verso il bersaglio
             agent.isStopped = true;
-            
             Vector3 direction = (currentTarget.position - transform.position).normalized;
             if (direction != Vector3.zero)
             {
                 Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
                 transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
             }
-            
-            // Non dobbiamo scrivere codice per sparare qui! 
-            // Il FightScript lo farà in automatico perché in SearchForEnemy gli abbiamo passato il target.
         }
     }
 
-    private void OnDrawGizmosSelected() //solo fuori la scena game vera  e propra
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
