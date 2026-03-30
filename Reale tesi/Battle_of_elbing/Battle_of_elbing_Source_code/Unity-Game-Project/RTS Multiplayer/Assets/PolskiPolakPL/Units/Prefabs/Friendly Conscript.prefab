@@ -2117,9 +2117,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e1ac20b58f0026448e72d724d8bd5f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sightRange: 15
+  sightRange: 1500
   attackRange: 5
   enemyTag: Enemy
+  myCurrentHealth: 0
+  myHealthPercentage: 0
+  visibleEnemiesCount: 0
 --- !u!1 &8807610074056549345
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,7 +17,9 @@ public class SoldierBrain : MonoBehaviour
     [Header("Sensori per ASP (Sola Lettura)")]
     public int myCurrentHealth;
     public float myHealthPercentage; //la percentuale e meglio del valore per asp soprattuto avendo conscript heavy e sniper
-
+    public int visibleEnemiesCount;
+    
+    
     private NavMeshAgent agent;
     private Transform currentTarget;
     private AiTargetingSystem originalTargetingSystem;
@@ -49,16 +51,26 @@ public class SoldierBrain : MonoBehaviour
     }
 
     void UpdateSensors()
-    {
-        if (myUnitScript != null && myUnitScript.unit != null)
         {
-            myCurrentHealth = myUnitScript.currentHealth;
-            
-            // Calcoliamo la percentuale di vita (da 0 a 100)
-            myHealthPercentage = ((float)myCurrentHealth / myUnitScript.unit.health) * 100f;
-        }
-    }
+            // 1. Sensore Vita
+            if (myUnitScript != null && myUnitScript.unit != null)
+            {
+                myCurrentHealth = myUnitScript.currentHealth;
+                myHealthPercentage = ((float)myCurrentHealth / myUnitScript.unit.health) * 100f;
+            }
 
+            // 2. Sensore Vista (Quanti nemici ci sono in zona?)
+            visibleEnemiesCount = 0; // Azzeriamo il contatore ogni frame
+            Collider[] hits = Physics.OverlapSphere(transform.position, sightRange);
+            
+            foreach (Collider hit in hits)
+            {
+                if (hit.CompareTag(enemyTag))
+                {
+                    visibleEnemiesCount++; // Aggiungiamo 1 per ogni nemico trovato
+                }
+            }
+        }
     void SearchForEnemy()
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, sightRange);
