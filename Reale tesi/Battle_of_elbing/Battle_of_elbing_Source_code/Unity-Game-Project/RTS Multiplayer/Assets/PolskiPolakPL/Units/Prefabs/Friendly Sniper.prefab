@@ -1787,6 +1787,7 @@ GameObject:
   - component: {fileID: 6312987573733913969}
   - component: {fileID: 2820683206260383814}
   - component: {fileID: 3592070288138190799}
+  - component: {fileID: -2347741215181228537}
   m_Layer: 7
   m_Name: Friendly Sniper
   m_TagString: Infantry
@@ -2032,6 +2033,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minimapPrefab: {fileID: 7473709203878748025}
+--- !u!114 &-2347741215181228537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7679600218647525199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e1ac20b58f0026448e72d724d8bd5f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sightRange: 25
+  attackRange: 15
+  enemyTag: Enemy
 --- !u!1 &7824105919127674255
 GameObject:
   m_ObjectHideFlags: 0

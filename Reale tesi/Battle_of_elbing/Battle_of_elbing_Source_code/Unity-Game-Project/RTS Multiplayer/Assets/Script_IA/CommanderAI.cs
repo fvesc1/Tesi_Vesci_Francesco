@@ -14,7 +14,7 @@ public class CommanderAI : MonoBehaviour
     public Unit heavySO;
 
     [Header("Impostazioni Produzione")]
-    public float timeBetweenSpawns = 5f; // Prova a comprare ogni 5 secondi
+    public float timeBetweenSpawns = 5f; // todo modificare 
     private float timer = 0f;
 
     void Update()

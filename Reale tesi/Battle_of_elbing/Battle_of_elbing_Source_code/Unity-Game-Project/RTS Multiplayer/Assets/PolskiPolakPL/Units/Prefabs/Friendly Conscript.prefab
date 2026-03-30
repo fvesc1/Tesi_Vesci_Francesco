@@ -1859,6 +1859,7 @@ GameObject:
   - component: {fileID: 4954312043987608636}
   - component: {fileID: -8961029316325055449}
   - component: {fileID: 640652455215123453}
+  - component: {fileID: 1559384437906439623}
   m_Layer: 7
   m_Name: Friendly Conscript
   m_TagString: Infantry
@@ -2104,6 +2105,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minimapPrefab: {fileID: 3182562807447753475}
+--- !u!114 &1559384437906439623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8754418370629131466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e1ac20b58f0026448e72d724d8bd5f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sightRange: 15
+  attackRange: 5
+  enemyTag: Enemy
 --- !u!1 &8807610074056549345
 GameObject:
   m_ObjectHideFlags: 0
