@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class ObjectiveSensor : MonoBehaviour
 {
     [Header("Identificativo per ASP")]
     // Questo è il nome che userà ASP per riconoscere di QUALE base stiamo parlando
     public string objectiveID = "objective_name"; 
 
-    [Header("Dati per ASP (Sola Lettura)")]
+    [Header("Dati per ASP")]
+
     // Qui scriveremo "NEUTRAL", "FRIENDLY" o "HOSTILE"
+
     public string currentOwner; 
 
     private ObjectiveInfluenceScript influenceScript;

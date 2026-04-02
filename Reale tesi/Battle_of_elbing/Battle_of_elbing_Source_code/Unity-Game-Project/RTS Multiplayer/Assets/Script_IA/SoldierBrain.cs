@@ -16,7 +16,11 @@ public class SoldierBrain : MonoBehaviour
 
     [Header("Sensori per ASP (Sola Lettura)")]
     public int myCurrentHealth;
+
+
     public float myHealthPercentage; //la percentuale e meglio del valore per asp soprattuto avendo conscript heavy e sniper
+
+
     public int visibleEnemiesCount;
     
     
