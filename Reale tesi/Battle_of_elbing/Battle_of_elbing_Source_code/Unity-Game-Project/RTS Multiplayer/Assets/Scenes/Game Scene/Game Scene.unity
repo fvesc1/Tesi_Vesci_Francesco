@@ -1148,7 +1148,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 214801070}
-  - component: {fileID: 214801069}
+  - component: {fileID: 214801072}
+  - component: {fileID: 214801071}
   m_Layer: 0
   m_Name: Dispatcher
   m_TagString: Untagged
@@ -1156,18 +1157,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &214801069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 214801068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 357554835, guid: acaf99db48d038241baa7e0fc48709d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &214801070
 Transform:
   m_ObjectHideFlags: 0
@@ -1183,6 +1172,106 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &214801071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214801068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1612528518, guid: 06783fc4099d1e04ba318698c43e592c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _savedProperties:
+  - myStrings:
+    - Dispatcher
+    Count: 1
+  - myStrings:
+    - Dispatcher
+    - activeMessages
+    Count: 2
+  - myStrings:
+    - Dispatcher
+    - activeMessages
+    - Message
+    - messageType
+    Count: 4
+  - myStrings:
+    - Dispatcher
+    - activeMessages
+    - Message
+    - objectiveId
+    Count: 4
+  _toMapProperties:
+  - myStrings:
+    - Dispatcher
+    - activeMessages
+    - Message
+    - messageType
+    Count: 4
+  - myStrings:
+    - Dispatcher
+    - activeMessages
+    - Message
+    - objectiveId
+    Count: 4
+  _propertyFeatures:
+  - property:
+      myStrings:
+      - Dispatcher
+      - activeMessages
+      - Message
+      - messageType
+      Count: 4
+    windowWidth: 1
+    configurationName: dispatcherSensor
+    _propertyAlias: dispatcherSensor_Message_messageType
+    propertyAliasHash: 1007558645
+    operation: 0
+    specificValue: 
+    counter: 0
+  - property:
+      myStrings:
+      - Dispatcher
+      - activeMessages
+      - Message
+      - objectiveId
+      Count: 4
+    windowWidth: 1
+    configurationName: dispatcherSensor
+    _propertyAlias: dispatcherSensor_Message_objectiveId
+    propertyAliasHash: 1041724132
+    operation: 0
+    specificValue: 
+    counter: 0
+  _configurationName: dispatcherSensor
+  isInvariant: 0
+  isFixedSize: 0
+  _serializableSensorsTypes:
+  - typeName: ThinkEngine.dispatcherSensor_Message_messageType, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - typeName: ThinkEngine.dispatcherSensor_Message_objectiveId, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  recompile: 0
+  teRecompile: 0
+  generatedScripts:
+  - dispatcherSensor_Message_messageType.cs
+  - dispatcherSensor_Message_objectiveId.cs
+--- !u!114 &214801072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214801068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 054261ad2c5ec15469b81687635254c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeMessages: []
 --- !u!43 &228569525
 Mesh:
   m_ObjectHideFlags: 0
