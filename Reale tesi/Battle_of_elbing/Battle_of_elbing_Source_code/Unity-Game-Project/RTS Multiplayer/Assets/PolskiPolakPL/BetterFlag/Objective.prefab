@@ -96,6 +96,8 @@ GameObject:
   - component: {fileID: 553423383919934491}
   - component: {fileID: 7385434709377777157}
   - component: {fileID: 1445033435911507302}
+  - component: {fileID: 171166933898292784}
+  - component: {fileID: 6438816498640948750}
   m_Layer: 0
   m_Name: Objective
   m_TagString: Objective
@@ -199,6 +201,91 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minimapPrefab: {fileID: 3436420194975745122}
+--- !u!114 &171166933898292784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870905664259063319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3edebd2a7d119d5439a9c863937ce50f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectiveID: objective_1
+  currentOwner: 
+--- !u!114 &6438816498640948750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870905664259063319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1612528518, guid: 06783fc4099d1e04ba318698c43e592c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _savedProperties:
+  - myStrings:
+    - ObjectiveSensor
+    Count: 1
+  - myStrings:
+    - ObjectiveSensor
+    - currentOwner
+    Count: 2
+  - myStrings:
+    - ObjectiveSensor
+    - objectiveID
+    Count: 2
+  _toMapProperties:
+  - myStrings:
+    - ObjectiveSensor
+    - currentOwner
+    Count: 2
+  - myStrings:
+    - ObjectiveSensor
+    - objectiveID
+    Count: 2
+  _propertyFeatures:
+  - property:
+      myStrings:
+      - ObjectiveSensor
+      - currentOwner
+      Count: 2
+    windowWidth: 1
+    configurationName: 
+    _propertyAlias: objective_Sensor_currentOwner
+    propertyAliasHash: -1074175419
+    operation: 0
+    specificValue: 
+    counter: 0
+  - property:
+      myStrings:
+      - ObjectiveSensor
+      - objectiveID
+      Count: 2
+    windowWidth: 1
+    configurationName: 
+    _propertyAlias: objective_Sensor_objectiveID
+    propertyAliasHash: -1515737545
+    operation: 0
+    specificValue: 
+    counter: 0
+  _configurationName: objectiveSensor
+  isInvariant: 0
+  isFixedSize: 0
+  _serializableSensorsTypes:
+  - typeName: ThinkEngine.objective_Sensor_currentOwner, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - typeName: ThinkEngine.objective_Sensor_objectiveID, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  recompile: 0
+  teRecompile: 0
+  generatedScripts:
+  - objective_Sensor_currentOwner.cs
+  - objective_Sensor_objectiveID.cs
 --- !u!1 &4498629454413732265
 GameObject:
   m_ObjectHideFlags: 0

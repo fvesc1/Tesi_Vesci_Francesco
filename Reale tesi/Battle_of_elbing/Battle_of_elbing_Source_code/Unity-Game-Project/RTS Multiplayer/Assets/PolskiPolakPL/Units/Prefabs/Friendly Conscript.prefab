@@ -1860,6 +1860,7 @@ GameObject:
   - component: {fileID: -8961029316325055449}
   - component: {fileID: 640652455215123453}
   - component: {fileID: 1559384437906439623}
+  - component: {fileID: 1013375036830695914}
   m_Layer: 7
   m_Name: Friendly Conscript
   m_TagString: Infantry
@@ -2123,6 +2124,28 @@ MonoBehaviour:
   myCurrentHealth: 0
   myHealthPercentage: 0
   visibleEnemiesCount: 0
+--- !u!114 &1013375036830695914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8754418370629131466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1612528518, guid: 06783fc4099d1e04ba318698c43e592c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _savedProperties: []
+  _toMapProperties: []
+  _propertyFeatures: []
+  _configurationName: 
+  isInvariant: 0
+  isFixedSize: 0
+  _serializableSensorsTypes: []
+  recompile: 0
+  teRecompile: 0
+  generatedScripts: []
 --- !u!1 &8807610074056549345
 GameObject:
   m_ObjectHideFlags: 0
