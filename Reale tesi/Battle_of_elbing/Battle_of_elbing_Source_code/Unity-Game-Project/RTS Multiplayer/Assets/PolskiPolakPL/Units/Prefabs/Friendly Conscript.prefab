@@ -2118,7 +2118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e1ac20b58f0026448e72d724d8bd5f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sightRange: 1500
+  sightRange: 15
   attackRange: 5
   enemyTag: Enemy
   myCurrentHealth: 0
@@ -2136,16 +2136,65 @@ MonoBehaviour:
   m_Script: {fileID: -1612528518, guid: 06783fc4099d1e04ba318698c43e592c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _savedProperties: []
-  _toMapProperties: []
-  _propertyFeatures: []
-  _configurationName: 
+  _savedProperties:
+  - myStrings:
+    - SoldierBrain
+    Count: 1
+  - myStrings:
+    - SoldierBrain
+    - myHealthPercentage
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - visibleEnemiesCount
+    Count: 2
+  _toMapProperties:
+  - myStrings:
+    - SoldierBrain
+    - myHealthPercentage
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - visibleEnemiesCount
+    Count: 2
+  _propertyFeatures:
+  - property:
+      myStrings:
+      - SoldierBrain
+      - myHealthPercentage
+      Count: 2
+    windowWidth: 1
+    configurationName: conscriptSensor
+    _propertyAlias: conscriptSensor_myHealthPercentage
+    propertyAliasHash: -1311179456
+    operation: 0
+    specificValue: 
+    counter: 0
+  - property:
+      myStrings:
+      - SoldierBrain
+      - visibleEnemiesCount
+      Count: 2
+    windowWidth: 1
+    configurationName: conscriptSensor
+    _propertyAlias: conscriptSensor_visibleEnemiesCount
+    propertyAliasHash: 789697689
+    operation: 0
+    specificValue: 
+    counter: 0
+  _configurationName: conscriptSensor
   isInvariant: 0
   isFixedSize: 0
-  _serializableSensorsTypes: []
+  _serializableSensorsTypes:
+  - typeName: ThinkEngine.conscriptSensor_myHealthPercentage, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - typeName: ThinkEngine.conscriptSensor_visibleEnemiesCount, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   recompile: 0
   teRecompile: 0
-  generatedScripts: []
+  generatedScripts:
+  - conscriptSensor_myHealthPercentage.cs
+  - conscriptSensor_visibleEnemiesCount.cs
 --- !u!1 &8807610074056549345
 GameObject:
   m_ObjectHideFlags: 0

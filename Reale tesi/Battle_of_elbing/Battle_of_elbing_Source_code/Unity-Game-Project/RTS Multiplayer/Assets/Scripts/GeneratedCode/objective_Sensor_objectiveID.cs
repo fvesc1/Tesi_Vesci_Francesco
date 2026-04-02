@@ -20,7 +20,7 @@ namespace ThinkEngine
 			mapper = (BasicTypeMapper)MapperManager.GetMapper(typeof(string));
 			operation = mapper.OperationList()[0];
 			counter = 0;
-			mappingTemplate = "objective_Sensor_objectiveID(objective_1,objectIndex("+index+"),{0})." + Environment.NewLine;
+			mappingTemplate = "objective_Sensor_objectiveID(objective,objectIndex("+index+"),{0})." + Environment.NewLine;
 		}
 		public override void Destroy()
 		{
