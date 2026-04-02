@@ -1968,6 +1968,8 @@ GameObject:
   - component: {fileID: 528576855485768185}
   - component: {fileID: -5973672285043979380}
   - component: {fileID: -735550056281830279}
+  - component: {fileID: 1919353516174860370}
+  - component: {fileID: -1494678011245091245}
   m_Layer: 7
   m_Name: Friendly Heavy
   m_TagString: Infantry
@@ -2231,6 +2233,10 @@ MonoBehaviour:
   myCurrentHealth: 0
   myHealthPercentage: 0
   visibleEnemiesCount: 0
+  hasAspOrder: 0
+  aspTargetX: 0
+  aspTargetY: 0
+  aspTargetZ: 0
 --- !u!114 &-735550056281830279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2302,6 +2308,118 @@ MonoBehaviour:
   generatedScripts:
   - heavySensor_visibleEnemiesCount.cs
   - heavySensor_myHealthPercentage.cs
+--- !u!114 &1919353516174860370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7816710721940558339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1947222007, guid: 06783fc4099d1e04ba318698c43e592c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-1494678011245091245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7816710721940558339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1985704856, guid: 06783fc4099d1e04ba318698c43e592c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _savedProperties:
+  - myStrings:
+    - SoldierBrain
+    Count: 1
+  - myStrings:
+    - SoldierBrain
+    - hasAspOrder
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - aspTargetX
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - aspTargetY
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - aspTargetZ
+    Count: 2
+  _toMapProperties:
+  - myStrings:
+    - SoldierBrain
+    - hasAspOrder
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - aspTargetX
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - aspTargetY
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - aspTargetZ
+    Count: 2
+  _propertyFeatures:
+  - property:
+      myStrings:
+      - SoldierBrain
+      - hasAspOrder
+      Count: 2
+    windowWidth: 1
+    configurationName: heavyActuator
+    _propertyAlias: heavyActuator_hasAspOrder
+    propertyAliasHash: -478920163
+    operation: 0
+    specificValue: 
+    counter: 0
+  - property:
+      myStrings:
+      - SoldierBrain
+      - aspTargetX
+      Count: 2
+    windowWidth: 1
+    configurationName: heavyActuator
+    _propertyAlias: heavyActuator_aspTargetX
+    propertyAliasHash: 731819656
+    operation: 0
+    specificValue: 
+    counter: 0
+  - property:
+      myStrings:
+      - SoldierBrain
+      - aspTargetY
+      Count: 2
+    windowWidth: 1
+    configurationName: heavyActuator
+    _propertyAlias: heavyActuator_aspTargetY
+    propertyAliasHash: -1997063699
+    operation: 0
+    specificValue: 
+    counter: 0
+  - property:
+      myStrings:
+      - SoldierBrain
+      - aspTargetZ
+      Count: 2
+    windowWidth: 1
+    configurationName: heavyActuator
+    _propertyAlias: heavyActuator_aspTargetZ
+    propertyAliasHash: 1894619070
+    operation: 0
+    specificValue: 
+    counter: 0
+  _configurationName: heavyActuator
+  _methodToApply: Always
 --- !u!1 &8614329597360663763
 GameObject:
   m_ObjectHideFlags: 0

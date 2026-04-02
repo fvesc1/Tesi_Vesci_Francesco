@@ -1789,6 +1789,8 @@ GameObject:
   - component: {fileID: 3592070288138190799}
   - component: {fileID: -2347741215181228537}
   - component: {fileID: 2693313757487105557}
+  - component: {fileID: -3188257877975265700}
+  - component: {fileID: 8755008036107903321}
   m_Layer: 7
   m_Name: Friendly Sniper
   m_TagString: Infantry
@@ -2052,6 +2054,10 @@ MonoBehaviour:
   myCurrentHealth: 0
   myHealthPercentage: 0
   visibleEnemiesCount: 0
+  hasAspOrder: 0
+  aspTargetX: 0
+  aspTargetY: 0
+  aspTargetZ: 0
 --- !u!114 &2693313757487105557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2123,6 +2129,118 @@ MonoBehaviour:
   generatedScripts:
   - sniperSensor_myHealthPercentage.cs
   - sniperSensor_visibleEnemiesCount.cs
+--- !u!114 &-3188257877975265700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7679600218647525199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1947222007, guid: 06783fc4099d1e04ba318698c43e592c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8755008036107903321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7679600218647525199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1985704856, guid: 06783fc4099d1e04ba318698c43e592c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _savedProperties:
+  - myStrings:
+    - SoldierBrain
+    Count: 1
+  - myStrings:
+    - SoldierBrain
+    - hasAspOrder
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - aspTargetX
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - aspTargetY
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - aspTargetZ
+    Count: 2
+  _toMapProperties:
+  - myStrings:
+    - SoldierBrain
+    - hasAspOrder
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - aspTargetX
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - aspTargetY
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - aspTargetZ
+    Count: 2
+  _propertyFeatures:
+  - property:
+      myStrings:
+      - SoldierBrain
+      - hasAspOrder
+      Count: 2
+    windowWidth: 1
+    configurationName: sniperActuator
+    _propertyAlias: sniperActuator_hasAspOrder
+    propertyAliasHash: -135433311
+    operation: 0
+    specificValue: 
+    counter: 0
+  - property:
+      myStrings:
+      - SoldierBrain
+      - aspTargetX
+      Count: 2
+    windowWidth: 1
+    configurationName: sniperActuator
+    _propertyAlias: sniperActuator_aspTargetX
+    propertyAliasHash: 43051192
+    operation: 0
+    specificValue: 
+    counter: 0
+  - property:
+      myStrings:
+      - SoldierBrain
+      - aspTargetY
+      Count: 2
+    windowWidth: 1
+    configurationName: sniperActuator
+    _propertyAlias: sniperActuator_aspTargetY
+    propertyAliasHash: 43051193
+    operation: 0
+    specificValue: 
+    counter: 0
+  - property:
+      myStrings:
+      - SoldierBrain
+      - aspTargetZ
+      Count: 2
+    windowWidth: 1
+    configurationName: sniperActuator
+    _propertyAlias: sniperActuator_aspTargetZ
+    propertyAliasHash: 43051190
+    operation: 0
+    specificValue: 
+    counter: 0
+  _configurationName: sniperActuator
+  _methodToApply: Always
 --- !u!1 &7824105919127674255
 GameObject:
   m_ObjectHideFlags: 0

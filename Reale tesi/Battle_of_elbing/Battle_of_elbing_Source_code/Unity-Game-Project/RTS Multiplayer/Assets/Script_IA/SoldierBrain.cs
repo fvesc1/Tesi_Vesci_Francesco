@@ -1,9 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-
-
-//per  ora non funziona a meno che non si aumenti il sight range a 1500
-
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,27 +10,28 @@ public class SoldierBrain : MonoBehaviour
     public float attackRange = 5f;
     public string enemyTag = "Enemy";
 
-    [Header("Sensori per ASP (Sola Lettura)")]
+    [Header("Sensori per ASP (Lettura)")]
     public int myCurrentHealth;
-
-
-    public float myHealthPercentage; //la percentuale e meglio del valore per asp soprattuto avendo conscript heavy e sniper
-
-
+    public float myHealthPercentage; 
     public int visibleEnemiesCount;
     
+    // --- NUOVE VARIABILI PER GLI ATTUATORI ---
+    [Header("Attuatori da ASP (Scrittura)")]
+    public bool hasAspOrder = false; // ASP lo imposta a true quando dà un ordine
+    public float aspTargetX;
+    public float aspTargetY;
+    public float aspTargetZ;
+    // ----------------------------------------
     
     private NavMeshAgent agent;
     private Transform currentTarget;
     private AiTargetingSystem originalTargetingSystem;
-    private UnitScript myUnitScript; //da qui prendo la vita della friendly unit
+    private UnitScript myUnitScript;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         originalTargetingSystem = GetComponent<AiTargetingSystem>();
-        
-        // Colleghiamo il sensore della vita
         myUnitScript = GetComponent<UnitScript>();
     }
 
@@ -43,38 +40,47 @@ public class SoldierBrain : MonoBehaviour
         // 1. FASE SENSORI: Aggiorniamo i dati per ASP
         UpdateSensors();
 
-        // 2. FASE ATTUATORI (Temporanea finché non c'è ASP)
-        if (currentTarget == null)
+        // 2. FASE ATTUATORI: Chi comanda il movimento?
+        if (hasAspOrder)
         {
-            SearchForEnemy();
+            // Se ASP ha dettato delle coordinate, marcia verso quel punto!
+            // (Il FightScript continuerà comunque a sparare in automatico se vede nemici per strada)
+            agent.isStopped = false;
+            agent.SetDestination(new Vector3(aspTargetX, aspTargetY, aspTargetZ));
         }
         else 
         {
-            EngageEnemy();
+            // Comportamento autonomo di base (se ASP non ha dato ordini)
+            if (currentTarget == null)
+            {
+                SearchForEnemy();
+            }
+            else 
+            {
+                EngageEnemy();
+            }
         }
     }
 
     void UpdateSensors()
+    {
+        if (myUnitScript != null && myUnitScript.unit != null)
         {
-            // 1. Sensore Vita
-            if (myUnitScript != null && myUnitScript.unit != null)
-            {
-                myCurrentHealth = myUnitScript.currentHealth;
-                myHealthPercentage = ((float)myCurrentHealth / myUnitScript.unit.health) * 100f;
-            }
+            myCurrentHealth = myUnitScript.currentHealth;
+            myHealthPercentage = ((float)myCurrentHealth / myUnitScript.unit.health) * 100f;
+        }
 
-            // 2. Sensore Vista (Quanti nemici ci sono in zona?)
-            visibleEnemiesCount = 0; // Azzeriamo il contatore ogni frame
-            Collider[] hits = Physics.OverlapSphere(transform.position, sightRange);
-            
-            foreach (Collider hit in hits)
+        visibleEnemiesCount = 0; 
+        Collider[] hits = Physics.OverlapSphere(transform.position, sightRange);
+        foreach (Collider hit in hits)
+        {
+            if (hit.CompareTag(enemyTag))
             {
-                if (hit.CompareTag(enemyTag))
-                {
-                    visibleEnemiesCount++; // Aggiungiamo 1 per ogni nemico trovato
-                }
+                visibleEnemiesCount++; 
             }
         }
+    }
+
     void SearchForEnemy()
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, sightRange);
