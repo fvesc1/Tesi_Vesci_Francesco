@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class SoldierBrain : MonoBehaviour
 {
+    public Dispatcher globalDispatcher;
+
     [Header("Sensori e Raggio")]
     public float sightRange = 15f;
     public float attackRange = 5f;
@@ -14,6 +16,7 @@ public class SoldierBrain : MonoBehaviour
     public int myCurrentHealth;
     public float myHealthPercentage; 
     public int visibleEnemiesCount;
+    public int myUnitId;
     
     // --- NUOVE VARIABILI PER GLI ATTUATORI ---
     [Header("Attuatori da ASP (Scrittura)")]
@@ -33,6 +36,7 @@ public class SoldierBrain : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         originalTargetingSystem = GetComponent<AiTargetingSystem>();
         myUnitScript = GetComponent<UnitScript>();
+        myUnitId = gameObject.GetInstanceID();
     }
 
     void Update()
@@ -69,7 +73,18 @@ public class SoldierBrain : MonoBehaviour
             myCurrentHealth = myUnitScript.currentHealth;
             myHealthPercentage = ((float)myCurrentHealth / myUnitScript.unit.health) * 100f;
         }
+        // ESEMPIO DI INVIO MESSAGGIO:
+            // Se la vita è bassa e non abbiamo ancora chiesto aiuto...
+// LOGICA DI INVIO MESSAGGIO CON LOG
+        if (myHealthPercentage < 70f && Time.frameCount % 100 == 0) 
+        {
+            // Invio il messaggio al dispatcher
+            globalDispatcher.PostMessage("NeedBackup", 1); 
 
+            // Log di conferma con l'ID univoco del soldato
+            Debug.Log($"<color=cyan>[SOLDIER-{myUnitId}]</color> Vita bassa ({myHealthPercentage}%). " +
+                      $"Inviato 'NeedBackup' al Dispatcher per obiettivo 1.");
+        }
         visibleEnemiesCount = 0; 
         Collider[] hits = Physics.OverlapSphere(transform.position, sightRange);
         foreach (Collider hit in hits)

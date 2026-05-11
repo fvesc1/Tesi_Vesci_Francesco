@@ -1863,6 +1863,9 @@ GameObject:
   - component: {fileID: 1013375036830695914}
   - component: {fileID: 474254741106744659}
   - component: {fileID: 3665475747256397456}
+  - component: {fileID: 4385031979270117428}
+  - component: {fileID: 1411121623880026178}
+  - component: {fileID: 2024092934698754114}
   m_Layer: 7
   m_Name: Friendly Conscript
   m_TagString: Infantry
@@ -2120,12 +2123,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e1ac20b58f0026448e72d724d8bd5f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sightRange: 15
+  globalDispatcher: {fileID: 7069602220387917646, guid: 1e7594c499d83f2439f3294868f15bf0, type: 3}
+  sightRange: 1500
   attackRange: 5
   enemyTag: Enemy
   myCurrentHealth: 0
   myHealthPercentage: 0
   visibleEnemiesCount: 0
+  myUnitId: 0
   hasAspOrder: 0
   aspTargetX: 0
   aspTargetY: 0
@@ -2313,6 +2318,60 @@ MonoBehaviour:
     counter: 0
   _configurationName: conscriptActuator
   _methodToApply: Always
+--- !u!114 &4385031979270117428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8754418370629131466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1212236918, guid: 06783fc4099d1e04ba318698c43e592c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1411121623880026178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8754418370629131466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1504054938, guid: 06783fc4099d1e04ba318698c43e592c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priorityExecuting: 0
+--- !u!114 &2024092934698754114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8754418370629131466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 383103547, guid: 06783fc4099d1e04ba318698c43e592c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  borning: 0
+  enableBrain: 1
+  debug: 1
+  maintainInputFile: 0
+  _chosenSensorConfigurations:
+  - dispatcherSensor
+  - conscriptSensor
+  AIFilesPath: C:/Users/Dell/Desktop/Tesi_Vesci_Francesco/Reale tesi/Battle_of_elbing/Battle_of_elbing_Source_code/Unity-Game-Project/RTS
+    Multiplayer/Assets/StreamingAssets\ThinkEngineer\ThinkEngine
+  AIFilesPrefix: []
+  prefabBrain: 1
+  solverEnum: 1
+  _executeReasonerOn: When Sensors are ready
+  specificAIFile: 0
+  globalAIFile: 0
+  solver_options: []
+  _priority: 0
 --- !u!1 &8807610074056549345
 GameObject:
   m_ObjectHideFlags: 0
