@@ -7,44 +7,71 @@ public class CommanderAI : MonoBehaviour
     [Header("Infrastruttura")]
     public BarracksScript myBarracks;
     public PlayerScript myPlayerStats;
+    public Dispatcher globalDispatcher; // Collegamento alla bacheca messaggi
 
     [Header("Catalogo Unità")]
     public Unit conscriptSO;
     public Unit sniperSO;
     public Unit heavySO;
 
-    [Header("Impostazioni Produzione")]
-    public float timeBetweenSpawns = 5f; // todo modificare 
-    private float timer = 0f;
+    [Header("Sensori per ASP")]
+    public int currentMoney;
+    public int numMessagesInDispatcher; //da capire se serve perche se ci sono tanti messaggi si e sotto attacco e quindi compro tutto quello che posso velocemente, solo
+    //che non tutti i messaggi sono daiuto quindi da capire se il numero totale ci da indizi sulla strategia
+    public int currentUnitCount;
+    public int maxUnitCount;
+    public int baseHealth;
+
+    [Header("Attuatori da ASP")]
+    public bool executePurchase = false; // ASP imposta a true per comprare
+    public int unitTypeToBuy = 0;        // 1=Conscript, 2=Sniper, 3=Heavy
 
     void Update()
     {
-        // Il timer avanza in base al tempo reale del gioco
-        timer += Time.deltaTime;
-
-        // Quando il timer supera i 5 secondi, è ora di agire
-        if (timer >= timeBetweenSpawns)
+        // 1. AGGIORNAMENTO SENSORI
+        // Passiamo i dati all'IA
+        if (myPlayerStats != null)
         {
-            timer = 0f; // Resetta il timer per il prossimo giro
-            TryBuyUnit();
+           currentMoney = myPlayerStats.money;
+           currentUnitCount = myPlayerStats.population;
+           maxUnitCount = myPlayerStats.popCap;
+           baseHealth = myPlayerStats.hp;
+        }
+
+        if (globalDispatcher != null)
+        {
+            numMessagesInDispatcher = globalDispatcher.activeMessages.Count;
+        }
+
+        // 2. ESECUZIONE ORDINI (ATTUATORI)
+        // Se ASP ha deciso di comprare (executePurchase diventa true)
+        if (executePurchase)
+        {
+            PerformPurchase();
+            executePurchase = false; // Reset immediato per non comprare all'infinito
         }
     }
 
-    void TryBuyUnit()
+    void PerformPurchase()
     {
-        // Per ora testiamo solo con la truppa base
-        Unit unitToBuy = conscriptSO;
+        Unit unitToBuy = null;
 
-        // Chiediamo al PlayerScript se l'IA ha i soldi necessari
-        if (myPlayerStats.CanAffordUnit(unitToBuy))
+        // Traduciamo l'ID numerico di ASP nell'oggetto Unit di Unity
+        switch (unitTypeToBuy)
         {
-            Debug.Log("Comandante IA: Soldi sufficienti! Recluto un " + unitToBuy.name);
-            // Usiamo la stessa identica funzione che usava il bottone dell'umano!
+            case 1: unitToBuy = conscriptSO; break;
+            case 2: unitToBuy = sniperSO; break;
+            case 3: unitToBuy = heavySO; break;
+        }
+
+        if (unitToBuy != null && myPlayerStats.CanAffordUnit(unitToBuy))
+        {
+            Debug.Log($"<color=green>[COMMANDER-ASP]</color> Recluto: {unitToBuy.name}");
             myBarracks.RecruitUnit(unitToBuy);
         }
         else
         {
-            Debug.Log("Comandante IA: Povertà assoluta. Non posso comprare " + unitToBuy.name);
+            Debug.LogWarning("[COMMANDER-ASP] Ordine ricevuto ma soldi insufficienti o unità non valida.");
         }
     }
 }
