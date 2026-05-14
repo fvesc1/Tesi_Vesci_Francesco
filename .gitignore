@@ -1,0 +1,12 @@
+# Ignora la cartella Library ovunque si trovi nel progetto
+**/[Ll]ibrary/
+**/[Tt]emp/
+**/[Oo]bj/
+**/[Bb]uild/
+**/[Aa]ssets/Scripts/GeneratedCode/
+
+# Ignora file di soluzione e cache di Visual Studio
+*.csproj
+*.sln
+*.userprefs
+.vs/
