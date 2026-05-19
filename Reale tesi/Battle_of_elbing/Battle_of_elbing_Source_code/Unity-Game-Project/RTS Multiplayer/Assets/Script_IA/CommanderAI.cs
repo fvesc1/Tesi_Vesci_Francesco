@@ -60,8 +60,9 @@ public class CommanderAI : MonoBehaviour
         switch (unitTypeToBuy)
         {
             case 1: unitToBuy = conscriptSO; break;
-            case 2: unitToBuy = sniperSO; break;
-            case 3: unitToBuy = heavySO; break;
+            case 2: unitToBuy = heavySO; break;
+            case 3: unitToBuy = sniperSO; break;
+            
         }
 
         if (unitToBuy != null && myPlayerStats.CanAffordUnit(unitToBuy))
