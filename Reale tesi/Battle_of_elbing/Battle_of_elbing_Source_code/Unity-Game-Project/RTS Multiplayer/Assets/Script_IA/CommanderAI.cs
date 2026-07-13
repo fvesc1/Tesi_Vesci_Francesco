@@ -21,10 +21,23 @@ public class CommanderAI : MonoBehaviour
     public int currentUnitCount;
     public int maxUnitCount;
     public int baseHealth;
+    public int baseHealthPercentage; // Nuovo sensore percentuale calcolato dinamicamente
 
     [Header("Attuatori da ASP")]
     public bool executePurchase = false; // ASP imposta a true per comprare
     public int unitTypeToBuy = 0;        // 1=Conscript, 2=Sniper, 3=Heavy
+    public bool EmergencyAction = false;    //TODO da rimuovere e solo una funzione che testa le regole asp con un log colorato
+
+    private int maxBaseHealth; // Valore di riferimento per calcolare la percentuale
+
+    void Start()
+    {
+        // Rileviamo dinamicamente la salute massima della base all'avvio del gioco
+        if (myPlayerStats != null)
+        {
+            maxBaseHealth = myPlayerStats.hp;
+        }
+    }
 
     void Update()
     {
@@ -36,6 +49,17 @@ public class CommanderAI : MonoBehaviour
            currentUnitCount = myPlayerStats.population;
            maxUnitCount = myPlayerStats.popCap;
            baseHealth = myPlayerStats.hp;
+
+           // Calcolo dinamico sicuro al 100% senza numeri fissi
+           if (maxBaseHealth > 0)
+           {
+               baseHealthPercentage = Mathf.RoundToInt(((float)baseHealth / maxBaseHealth) * 100f);
+           }
+           else
+           {
+               maxBaseHealth = baseHealth;
+               baseHealthPercentage = 100;
+           }
         }
 
         if (globalDispatcher != null)
@@ -50,6 +74,18 @@ public class CommanderAI : MonoBehaviour
             PerformPurchase();
             executePurchase = false; // Reset immediato per non comprare all'infinito
         }
+
+        // Se l'interruttore dell'emergenza viene attivato dall'ASP
+        if (EmergencyAction)
+        {
+            TriggerEmergencyLog();
+            EmergencyAction = false; // Reset immediato per essere pronti al prossimo trigger
+        }
+    }
+
+    void TriggerEmergencyLog()
+    {
+        Debug.Log("<color=red>[COMMANDER-ASP - TEST]</color> EMERGENZA! La regola 'in_emergency' si è attivata nel file ASP!");
     }
 
     void PerformPurchase()

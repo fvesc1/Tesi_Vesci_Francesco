@@ -6,7 +6,7 @@ using UnityEngine;
 public class ObjectiveSensor : MonoBehaviour
 {
     [Header("Identificativo per ASP")]
-    // Questo è il nome che userà ASP per riconoscere di QUALE base stiamo parlando
+    // Questo è il nome che userà ASP per riconoscere di QUALE base stiamo parlando // TODO forse la o va maiuscola
     public string objectiveID = "objective_name"; 
 
     [Header("Dati per ASP")]

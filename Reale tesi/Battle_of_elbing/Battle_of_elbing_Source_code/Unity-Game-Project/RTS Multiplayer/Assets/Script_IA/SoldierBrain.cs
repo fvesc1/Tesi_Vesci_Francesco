@@ -33,6 +33,7 @@ public class SoldierBrain : MonoBehaviour
 
     void Start()
     {
+        globalDispatcher = Dispatcher.Instance;
         agent = GetComponent<NavMeshAgent>();
         originalTargetingSystem = GetComponent<AiTargetingSystem>();
         myUnitScript = GetComponent<UnitScript>();

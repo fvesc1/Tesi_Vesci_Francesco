@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable] 
-public class Message //penso sia piu giusto inserire il ttl qui in base al tipo di messaggio
+public class Message 
 {
     public string messageType;
     public int objectiveId;
@@ -12,29 +12,45 @@ public class Message //penso sia piu giusto inserire il ttl qui in base al tipo 
 
 public class Dispatcher : MonoBehaviour
 {
+    // SINGLETON PATTERN: Rende il Dispatcher accessibile globalmente e unico
+    public static Dispatcher Instance { get; private set; }
+
     [Header("Bacheca Messaggi")]
     public List<Message> activeMessages = new List<Message>();
 
     [Header("Configurazione")]
-    public float messageDuration = 5.0f; // I messaggi spariscono dopo 5 secondi da capire un buon tempo per farli sparire 
+    public float messageDuration = 5.0f; 
 
-    void Start() {
-        Debug.Log("Inizio stress test Dispatcher: invio 10 messaggi...");
-
-        for (int i = 0; i < 10; i++){
-        // Inviamo messaggi su obiettivi diversi (0-9) con tipi diversi
-        string tipoTest = (i % 2 == 0) ? "UnderAttack" : "NeedBackup";
-        PostMessage(tipoTest, i);
+    void Awake()
+    {
+        // Gestione del Singleton per evitare duplicati nei cambi scena
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // Impedisce a Unity di distruggerlo quando cambi scena!
+        }
+        else
+        {
+            Destroy(gameObject); // Se ne esiste già uno, distruggi il doppione
         }
     }
+
+    void Start() 
+    {
+        Debug.Log("Inizio stress test Dispatcher: invio 10 messaggi...");
+        for (int i = 0; i < 10; i++)
+        {
+            string tipoTest = (i % 2 == 0) ? "UnderAttack" : "NeedBackup";
+            PostMessage(tipoTest, i);
+        }
+    }
+
     public void PostMessage(string type, int objId)
     {
         Message msg = new Message { messageType = type, objectiveId = objId };
         activeMessages.Add(msg);
         
         Debug.Log($"[DISPATCHER] Nuovo messaggio: {type} all'obiettivo {objId}");
-
-        // AVVIAMO IL TIMER: questo messaggio si auto-distruggerà
         StartCoroutine(RemoveMessageAfterDelay(msg, messageDuration));
     }
 
@@ -52,5 +68,15 @@ public class Dispatcher : MonoBehaviour
     public void ClearMessages()
     {
         activeMessages.Clear();
+    }
+
+    void OnDisable() // TODO rimuovere dopo test
+    {
+        Debug.LogError($"[DEBUG] Il Dispatcher è stato DISATTIVATO!", this);
+    }
+
+    void OnDestroy() // TODO rimuovere dopo test
+    {
+        Debug.LogError($"[DEBUG] Il Dispatcher è stato DISTRUTTO!", this);
     }
 }
