@@ -1792,8 +1792,7 @@ GameObject:
   - component: {fileID: -3188257877975265700}
   - component: {fileID: 8755008036107903321}
   - component: {fileID: -7553468476009336445}
-  - component: {fileID: 2149824818530997609}
-  - component: {fileID: -7483636984571542790}
+  - component: {fileID: 70193781619638432}
   m_Layer: 7
   m_Name: Friendly Sniper
   m_TagString: Infantry
@@ -2258,7 +2257,7 @@ MonoBehaviour:
   m_Script: {fileID: -1212236918, guid: 06783fc4099d1e04ba318698c43e592c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2149824818530997609
+--- !u!114 &70193781619638432
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2267,37 +2266,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 7679600218647525199}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1504054938, guid: 06783fc4099d1e04ba318698c43e592c, type: 3}
+  m_Script: {fileID: -626081490, guid: 06783fc4099d1e04ba318698c43e592c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priorityExecuting: 0
---- !u!114 &-7483636984571542790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7679600218647525199}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 383103547, guid: 06783fc4099d1e04ba318698c43e592c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  borning: 0
+  borning: 1
   enableBrain: 1
   debug: 1
-  maintainInputFile: 0
-  _chosenSensorConfigurations: []
+  maintainInputFile: 1
+  _chosenSensorConfigurations:
+  - dispatcherSensor
+  - sniperSensor
   AIFilesPath: C:/Users/Dell/Desktop/Tesi_Vesci_Francesco/Reale tesi/Battle_of_elbing/Battle_of_elbing_Source_code/Unity-Game-Project/RTS
     Multiplayer/Assets/StreamingAssets\ThinkEngineer\ThinkEngine
-  AIFilesPrefix: []
+  AIFilesPrefix:
+  - Friendly_Sniper
   prefabBrain: 1
   solverEnum: 1
   _executeReasonerOn: When Sensors are ready
   specificAIFile: 0
   globalAIFile: 0
   solver_options: []
-  _priority: 0
+  _chosenActuatorConfigurations:
+  - sniperActuator
 --- !u!1 &7824105919127674255
 GameObject:
   m_ObjectHideFlags: 0
