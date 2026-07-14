@@ -2123,8 +2123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e1ac20b58f0026448e72d724d8bd5f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  globalDispatcher: {fileID: 7069602220387917646, guid: 1e7594c499d83f2439f3294868f15bf0, type: 3}
-  sightRange: 1500
+  globalDispatcher: {fileID: 0}
+  sightRange: 10
   attackRange: 5
   enemyTag: Enemy
   myCurrentHealth: 0
