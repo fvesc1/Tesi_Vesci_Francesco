@@ -2123,7 +2123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   globalDispatcher: {fileID: 0}
-  sightRange: 10
+  sightRange: 1000
   attackRange: 5
   enemyTag: Enemy
   myCurrentHealth: 0

@@ -2230,7 +2230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   globalDispatcher: {fileID: 0}
-  sightRange: 15
+  sightRange: 1500
   attackRange: 5
   enemyTag: Enemy
   myCurrentHealth: 0
@@ -2448,7 +2448,7 @@ MonoBehaviour:
   m_Script: {fileID: -626081490, guid: 06783fc4099d1e04ba318698c43e592c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  borning: 1
+  borning: 0
   enableBrain: 1
   debug: 1
   maintainInputFile: 1

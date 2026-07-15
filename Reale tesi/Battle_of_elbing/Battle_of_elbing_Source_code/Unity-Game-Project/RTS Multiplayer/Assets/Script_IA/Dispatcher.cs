@@ -35,14 +35,10 @@ public class Dispatcher : MonoBehaviour
         }
     }
 
+    // Start rimosso o tenuto pulito per l'inizializzazione reale
     void Start() 
     {
-        Debug.Log("Inizio stress test Dispatcher: invio 10 messaggi...");
-        for (int i = 0; i < 10; i++)
-        {
-            string tipoTest = (i % 2 == 0) ? "UnderAttack" : "NeedBackup";
-            PostMessage(tipoTest, i);
-        }
+        Debug.Log("[DISPATCHER] Inizializzato con successo e pronto a ricevere messaggi.");
     }
 
     public void PostMessage(string type, int objId)
@@ -50,7 +46,7 @@ public class Dispatcher : MonoBehaviour
         Message msg = new Message { messageType = type, objectiveId = objId };
         activeMessages.Add(msg);
         
-        Debug.Log($"[DISPATCHER] Nuovo messaggio: {type} all'obiettivo {objId}");
+        Debug.Log($"[DISPATCHER] Nuovo messaggio ricevuto: {type} per l'obiettivo {objId}");
         StartCoroutine(RemoveMessageAfterDelay(msg, messageDuration));
     }
 
@@ -61,22 +57,13 @@ public class Dispatcher : MonoBehaviour
         if (activeMessages.Contains(msg))
         {
             activeMessages.Remove(msg);
-            Debug.Log($"[DISPATCHER] Messaggio scaduto e rimosso: {msg.messageType}");
+            Debug.Log($"[DISPATCHER] Messaggio scaduto e rimosso: {msg.messageType} (Obiettivo: {msg.objectiveId})");
         }
     }
 
     public void ClearMessages()
     {
         activeMessages.Clear();
-    }
-
-    void OnDisable() // TODO rimuovere dopo test
-    {
-        Debug.LogError($"[DEBUG] Il Dispatcher è stato DISATTIVATO!", this);
-    }
-
-    void OnDestroy() // TODO rimuovere dopo test
-    {
-        Debug.LogError($"[DEBUG] Il Dispatcher è stato DISTRUTTO!", this);
+        Debug.Log("[DISPATCHER] Bacheca messaggi svuotata manualmente.");
     }
 }
