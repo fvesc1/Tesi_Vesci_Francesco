@@ -27,10 +27,10 @@ in_emergency :- aI_CommanderSensor_baseHealthPercentage(aI_Commander, objectInde
 %%%%%% stato normale (non emergenza)
 
 % SCELTA 1: COMPRA SNIPER (Priorità massima assoluta se abbiamo l'economia e spazio, tranne in emergenza totale)
-choose_unit(2) :- has_population_space, can_afford_sniper, not in_emergency.
+choose_unit(3) :- has_population_space, can_afford_sniper, not in_emergency.
 
 % SCELTA 2: COMPRA HEAVY (Se possiamo permettercelo, c'è spazio e non abbiamo abbastanza soldi per lo Sniper)
-choose_unit(3) :- has_population_space, can_afford_heavy, not can_afford_sniper, not in_emergency.
+choose_unit(2) :- has_population_space, can_afford_heavy, not can_afford_sniper, not in_emergency.
 
 % SCELTA 3: COMPRA CONSCRIPT (Se abbiamo solo i soldi minimi, oppure se siamo in emergency e possiamo permettercelo)
 choose_unit(1) :- has_population_space, can_afford_conscript, not can_afford_heavy.
