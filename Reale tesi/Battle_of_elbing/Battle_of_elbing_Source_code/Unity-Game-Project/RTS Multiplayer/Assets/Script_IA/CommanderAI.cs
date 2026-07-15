@@ -16,17 +16,16 @@ public class CommanderAI : MonoBehaviour
 
     [Header("Sensori per ASP")]
     public int currentMoney;
-    public int numMessagesInDispatcher; //da capire se serve perche se ci sono tanti messaggi si e sotto attacco e quindi compro tutto quello che posso velocemente, solo
-    //che non tutti i messaggi sono daiuto quindi da capire se il numero totale ci da indizi sulla strategia
+    public int numMessagesInDispatcher; 
     public int currentUnitCount;
     public int maxUnitCount;
     public int baseHealth;
-    public int baseHealthPercentage; // Nuovo sensore percentuale calcolato dinamicamente
+    public int baseHealthPercentage; 
 
     [Header("Attuatori da ASP")]
     public bool executePurchase = false; // ASP imposta a true per comprare
     public int unitTypeToBuy = 0;        // 1=Conscript, 2=Sniper, 3=Heavy
-    public bool EmergencyAction = false;    //TODO da rimuovere e solo una funzione che testa le regole asp con un log colorato
+    public bool EmergencyAction = false;
 
     private int maxBaseHealth; // Valore di riferimento per calcolare la percentuale
 
@@ -50,7 +49,6 @@ public class CommanderAI : MonoBehaviour
            maxUnitCount = myPlayerStats.popCap;
            baseHealth = myPlayerStats.hp;
 
-           // Calcolo dinamico sicuro al 100% senza numeri fissi
            if (maxBaseHealth > 0)
            {
                baseHealthPercentage = Mathf.RoundToInt(((float)baseHealth / maxBaseHealth) * 100f);
@@ -72,7 +70,7 @@ public class CommanderAI : MonoBehaviour
         if (executePurchase)
         {
             PerformPurchase();
-            executePurchase = false; // Reset immediato per non comprare all'infinito
+            executePurchase = false; 
         }
 
         // Se l'interruttore dell'emergenza viene attivato dall'ASP
@@ -92,7 +90,6 @@ public class CommanderAI : MonoBehaviour
     {
         Unit unitToBuy = null;
 
-        // Traduciamo l'ID numerico di ASP nell'oggetto Unit di Unity
         switch (unitTypeToBuy)
         {
             case 1: unitToBuy = conscriptSO; break;
