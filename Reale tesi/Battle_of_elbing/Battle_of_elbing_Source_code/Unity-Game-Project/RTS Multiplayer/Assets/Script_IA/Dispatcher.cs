@@ -21,6 +21,10 @@ public class Dispatcher : MonoBehaviour
     [Header("Configurazione")]
     public float messageDuration = 5.0f; 
 
+   
+    [Header("Mappa Obiettivi")]
+    public Transform[] mapObjectives; 
+
     void Awake()
     {
         // Gestione del Singleton per evitare duplicati nei cambi scena
@@ -35,10 +39,19 @@ public class Dispatcher : MonoBehaviour
         }
     }
 
-    // Start rimosso o tenuto pulito per l'inizializzazione reale
     void Start() 
     {
         Debug.Log("[DISPATCHER] Inizializzato con successo e pronto a ricevere messaggi.");
+    }
+
+
+    public Transform GetObjective(int id)
+    {
+        if (mapObjectives != null && id >= 0 && id < mapObjectives.Length)
+        {
+            return mapObjectives[id];
+        }
+        return null;
     }
 
     public void PostMessage(string type, int objId)

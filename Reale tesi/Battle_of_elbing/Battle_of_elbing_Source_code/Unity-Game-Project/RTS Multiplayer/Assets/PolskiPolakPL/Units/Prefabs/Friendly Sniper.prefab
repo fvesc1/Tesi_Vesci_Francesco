@@ -2271,7 +2271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   borning: 0
   enableBrain: 1
-  debug: 1
+  debug: 0
   maintainInputFile: 1
   _chosenSensorConfigurations:
   - dispatcherSensor
