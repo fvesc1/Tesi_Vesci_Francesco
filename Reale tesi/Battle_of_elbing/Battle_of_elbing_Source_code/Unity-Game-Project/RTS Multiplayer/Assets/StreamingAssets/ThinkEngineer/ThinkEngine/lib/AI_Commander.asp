@@ -57,5 +57,3 @@ choose_unit(1) :- has_population_space, can_afford_conscript, in_emergency.
 % Forza acquisto Conscript senza condizioni
 setOnActuator(aI_CommanderActuator_unitTypeToBuy(aI_Commander, objectIndex(Index), 1)) :- objectIndex(aI_CommanderActuator, Index).
 setOnActuator(aI_CommanderActuator_executePurchase(aI_Commander, objectIndex(Index), true)) :- objectIndex(aI_CommanderActuator, Index).
-
-#show setOnActuator/1.

@@ -113,7 +113,6 @@ public class SoldierBrain : MonoBehaviour
             }
         }
     }
-
     void EngageEnemy()
     {
         float distance = Vector3.Distance(transform.position, currentTarget.position);

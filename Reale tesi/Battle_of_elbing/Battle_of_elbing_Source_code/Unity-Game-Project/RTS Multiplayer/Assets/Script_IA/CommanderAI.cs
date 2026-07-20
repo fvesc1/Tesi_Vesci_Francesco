@@ -69,8 +69,11 @@ public class CommanderAI : MonoBehaviour
         // Se ASP ha deciso di comprare (executePurchase diventa true)
         if (executePurchase)
         {
+            if (unitTypeToBuy == 0) return;
+
             PerformPurchase();
             executePurchase = false; 
+            unitTypeToBuy = 0;
         }
 
         // Se l'interruttore dell'emergenza viene attivato dall'ASP
@@ -85,7 +88,7 @@ public class CommanderAI : MonoBehaviour
     {
         Debug.Log("<color=red>[COMMANDER-ASP - TEST]</color> EMERGENZA! La regola 'in_emergency' si è attivata nel file ASP!");
     }
-
+/*
     void PerformPurchase()
     {
         Unit unitToBuy = null;
@@ -108,4 +111,36 @@ public class CommanderAI : MonoBehaviour
             Debug.LogWarning("[COMMANDER-ASP] Ordine ricevuto ma soldi insufficienti o unità non valida.");
         }
     }
+    */
+void PerformPurchase()
+{
+    Unit unitToBuy = null;
+    switch (unitTypeToBuy)
+    {
+        case 1: unitToBuy = conscriptSO; break;
+        case 2: unitToBuy = heavySO; break;
+        case 3: unitToBuy = sniperSO; break;
+    }
+
+    // DEBUG: Verifichiamo cosa succede nel dettaglio
+    if (unitToBuy == null)
+    {
+        Debug.LogError($"[DEBUG] unitToBuy è NULL! Il valore ricevuto da ASP era: {unitTypeToBuy}");
+        return;
+    }
+
+    bool canAfford = myPlayerStats.CanAffordUnit(unitToBuy);
+    
+    if (canAfford)
+    {
+        Debug.Log($"<color=green>[COMMANDER]</color> Recluto: {unitToBuy.name}");
+        myBarracks.RecruitUnit(unitToBuy);
+    }
+    else
+    {
+        Debug.LogWarning($"[DEBUG] CANAFFORD FALSE per {unitToBuy.name}. " +
+                         $"Costa: {unitToBuy.cost}, Soldi attuali: {myPlayerStats.money}, " +
+                         $"Popolazione: {myPlayerStats.population}/{myPlayerStats.popCap}");
+    }
+}
 }

@@ -14,8 +14,17 @@ public class BarracksScript : MonoBehaviour
 
     public void RecruitUnit(Unit unitSO)
     {
+        /* i check per comprare verra fatto con ai commander
         if (!playerScript.CanAffordUnit(unitSO))
             return;
+        */ 
+
+        //test per caprie se cio non compra le unita
+        if (!playerScript.CanAffordUnit(unitSO)) 
+        {
+            Debug.LogWarning($"[BARRACKS] Ordine rifiutato per {unitSO.name}! Il Brain pensava di poterselo permettere, ma PlayerScript dice di no!");
+            return;
+        }
         playerScript.SpendMoney(unitSO.cost);
         GameObject _unitGO = Instantiate(unitSO.unitGO, transform.position, transform.rotation, playerScript.UnitsT);
         NavMeshAgent _unitAI = _unitGO.GetComponent<NavMeshAgent>();
@@ -30,7 +39,7 @@ public class BarracksScript : MonoBehaviour
         Vector3 unitListPosition = new Vector3(Input.mousePosition.x + (unitListWidth / 4), Input.mousePosition.y - (unitListHeight / 4), 0f);
         unitListRectTransform.position = unitListPosition;
         itemList.SetActive(true);
-    */
+        */
     }
     public void HideItemList()
     {
