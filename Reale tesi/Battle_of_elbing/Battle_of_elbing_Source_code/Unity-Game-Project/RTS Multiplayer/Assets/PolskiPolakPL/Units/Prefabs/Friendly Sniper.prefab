@@ -2088,6 +2088,26 @@ MonoBehaviour:
     - SoldierBrain
     - visibleEnemiesCount
     Count: 2
+  - myStrings:
+    - SoldierBrain
+    - myUnitId
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - isBackupRequested
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - amILowHealth
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - isAttackOrderPresent
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - currentGlobalObjectiveId
+    Count: 2
   _toMapProperties:
   - myStrings:
     - SoldierBrain
@@ -2096,6 +2116,26 @@ MonoBehaviour:
   - myStrings:
     - SoldierBrain
     - visibleEnemiesCount
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - myUnitId
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - isBackupRequested
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - amILowHealth
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - isAttackOrderPresent
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - currentGlobalObjectiveId
     Count: 2
   _propertyFeatures:
   - property:
@@ -2122,6 +2162,66 @@ MonoBehaviour:
     operation: 0
     specificValue: 
     counter: 0
+  - property:
+      myStrings:
+      - SoldierBrain
+      - myUnitId
+      Count: 2
+    windowWidth: 1
+    configurationName: sniperSensor
+    _propertyAlias: sniperSensor_myUnitId
+    propertyAliasHash: 1195429689
+    operation: 0
+    specificValue: 
+    counter: 0
+  - property:
+      myStrings:
+      - SoldierBrain
+      - isBackupRequested
+      Count: 2
+    windowWidth: 1
+    configurationName: sniperSensor
+    _propertyAlias: sniperSensor_isBackupRequested
+    propertyAliasHash: -59865226
+    operation: 0
+    specificValue: 
+    counter: 0
+  - property:
+      myStrings:
+      - SoldierBrain
+      - amILowHealth
+      Count: 2
+    windowWidth: 1
+    configurationName: sniperSensor
+    _propertyAlias: sniperSensor_amILowHealth
+    propertyAliasHash: -527428013
+    operation: 0
+    specificValue: 
+    counter: 0
+  - property:
+      myStrings:
+      - SoldierBrain
+      - isAttackOrderPresent
+      Count: 2
+    windowWidth: 1
+    configurationName: sniperSensor
+    _propertyAlias: sniperSensor_isAttackOrderPresent
+    propertyAliasHash: -1599984067
+    operation: 0
+    specificValue: 
+    counter: 0
+  - property:
+      myStrings:
+      - SoldierBrain
+      - currentGlobalObjectiveId
+      Count: 2
+    windowWidth: 1
+    configurationName: sniperSensor
+    _propertyAlias: sniperSensor_currentGlobalObjectiveId
+    propertyAliasHash: 364231272
+    operation: 0
+    specificValue: 
+    counter: 0
   _configurationName: sniperSensor
   isInvariant: 0
   isFixedSize: 0
@@ -2130,11 +2230,16 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   - typeName: ThinkEngine.sniperSensor_visibleEnemiesCount, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  recompile: 0
+  recompile: 1
   teRecompile: 0
   generatedScripts:
   - sniperSensor_myHealthPercentage.cs
   - sniperSensor_visibleEnemiesCount.cs
+  - sniperSensor_myUnitId.cs
+  - sniperSensor_isBackupRequested.cs
+  - sniperSensor_amILowHealth.cs
+  - sniperSensor_isAttackOrderPresent.cs
+  - sniperSensor_currentGlobalObjectiveId.cs
 --- !u!114 &-3188257877975265700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2179,6 +2284,10 @@ MonoBehaviour:
     - SoldierBrain
     - aspTargetZ
     Count: 2
+  - myStrings:
+    - SoldierBrain
+    - aspTargetObjectiveId
+    Count: 2
   _toMapProperties:
   - myStrings:
     - SoldierBrain
@@ -2195,6 +2304,10 @@ MonoBehaviour:
   - myStrings:
     - SoldierBrain
     - aspTargetZ
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - aspTargetObjectiveId
     Count: 2
   _propertyFeatures:
   - property:
@@ -2242,6 +2355,18 @@ MonoBehaviour:
     configurationName: sniperActuator
     _propertyAlias: sniperActuator_aspTargetZ
     propertyAliasHash: 43051190
+    operation: 0
+    specificValue: 
+    counter: 0
+  - property:
+      myStrings:
+      - SoldierBrain
+      - aspTargetObjectiveId
+      Count: 2
+    windowWidth: 1
+    configurationName: sniperActuator
+    _propertyAlias: sniperActuator_aspTargetObjectiveId
+    propertyAliasHash: 1593144558
     operation: 0
     specificValue: 
     counter: 0

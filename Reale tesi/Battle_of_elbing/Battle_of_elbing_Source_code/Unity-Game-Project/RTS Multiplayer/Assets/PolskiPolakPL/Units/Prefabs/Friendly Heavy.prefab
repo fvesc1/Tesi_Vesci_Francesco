@@ -2267,6 +2267,26 @@ MonoBehaviour:
     - SoldierBrain
     - myHealthPercentage
     Count: 2
+  - myStrings:
+    - SoldierBrain
+    - myUnitId
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - isBackupRequested
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - amILowHealth
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - isAttackOrderPresent
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - currentGlobalObjectiveId
+    Count: 2
   _toMapProperties:
   - myStrings:
     - SoldierBrain
@@ -2275,6 +2295,26 @@ MonoBehaviour:
   - myStrings:
     - SoldierBrain
     - myHealthPercentage
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - myUnitId
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - isBackupRequested
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - amILowHealth
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - isAttackOrderPresent
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - currentGlobalObjectiveId
     Count: 2
   _propertyFeatures:
   - property:
@@ -2301,6 +2341,66 @@ MonoBehaviour:
     operation: 0
     specificValue: 
     counter: 0
+  - property:
+      myStrings:
+      - SoldierBrain
+      - myUnitId
+      Count: 2
+    windowWidth: 1
+    configurationName: heavySensor
+    _propertyAlias: heavySensor_myUnitId
+    propertyAliasHash: 113751893
+    operation: 0
+    specificValue: 
+    counter: 0
+  - property:
+      myStrings:
+      - SoldierBrain
+      - isBackupRequested
+      Count: 2
+    windowWidth: 1
+    configurationName: heavySensor
+    _propertyAlias: heavySensor_isBackupRequested
+    propertyAliasHash: -262683490
+    operation: 0
+    specificValue: 
+    counter: 0
+  - property:
+      myStrings:
+      - SoldierBrain
+      - amILowHealth
+      Count: 2
+    windowWidth: 1
+    configurationName: heavySensor
+    _propertyAlias: heavySensor_amILowHealth
+    propertyAliasHash: -523456025
+    operation: 0
+    specificValue: 
+    counter: 0
+  - property:
+      myStrings:
+      - SoldierBrain
+      - isAttackOrderPresent
+      Count: 2
+    windowWidth: 1
+    configurationName: heavySensor
+    _propertyAlias: heavySensor_isAttackOrderPresent
+    propertyAliasHash: 1624180625
+    operation: 0
+    specificValue: 
+    counter: 0
+  - property:
+      myStrings:
+      - SoldierBrain
+      - currentGlobalObjectiveId
+      Count: 2
+    windowWidth: 1
+    configurationName: heavySensor
+    _propertyAlias: heavySensor_currentGlobalObjectiveId
+    propertyAliasHash: 2002904872
+    operation: 0
+    specificValue: 
+    counter: 0
   _configurationName: heavySensor
   isInvariant: 0
   isFixedSize: 0
@@ -2309,11 +2409,28 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   - typeName: ThinkEngine.heavySensor_myHealthPercentage, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  - typeName: ThinkEngine.heavySensor_myCurrentHealth, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - typeName: ThinkEngine.heavySensor_myUnitId, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - typeName: ThinkEngine.heavySensor_isBackupRequested, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - typeName: ThinkEngine.heavySensor_amILowHealth, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - typeName: ThinkEngine.heavySensor_isAttackOrderPresent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - typeName: ThinkEngine.heavySensor_currentGlobalObjectiveId, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   recompile: 0
   teRecompile: 0
   generatedScripts:
   - heavySensor_visibleEnemiesCount.cs
   - heavySensor_myHealthPercentage.cs
+  - heavySensor_myUnitId.cs
+  - heavySensor_isBackupRequested.cs
+  - heavySensor_amILowHealth.cs
+  - heavySensor_isAttackOrderPresent.cs
+  - heavySensor_currentGlobalObjectiveId.cs
 --- !u!114 &1919353516174860370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2358,6 +2475,10 @@ MonoBehaviour:
     - SoldierBrain
     - aspTargetZ
     Count: 2
+  - myStrings:
+    - SoldierBrain
+    - aspTargetObjectiveId
+    Count: 2
   _toMapProperties:
   - myStrings:
     - SoldierBrain
@@ -2374,6 +2495,10 @@ MonoBehaviour:
   - myStrings:
     - SoldierBrain
     - aspTargetZ
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - aspTargetObjectiveId
     Count: 2
   _propertyFeatures:
   - property:
@@ -2421,6 +2546,18 @@ MonoBehaviour:
     configurationName: heavyActuator
     _propertyAlias: heavyActuator_aspTargetZ
     propertyAliasHash: 1894619070
+    operation: 0
+    specificValue: 
+    counter: 0
+  - property:
+      myStrings:
+      - SoldierBrain
+      - aspTargetObjectiveId
+      Count: 2
+    windowWidth: 1
+    configurationName: heavyActuator
+    _propertyAlias: heavyActuator_aspTargetObjectiveId
+    propertyAliasHash: -1096403610
     operation: 0
     specificValue: 
     counter: 0

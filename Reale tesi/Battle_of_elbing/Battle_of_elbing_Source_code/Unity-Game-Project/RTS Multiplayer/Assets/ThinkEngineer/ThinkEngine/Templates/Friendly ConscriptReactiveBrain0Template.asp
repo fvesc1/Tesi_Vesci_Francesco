@@ -2,10 +2,13 @@
  %Sensors.
 %dispatcherSensor_Message_messageType(dispatcher,objectIndex(Index),Index1,Value).
 %dispatcherSensor_objectiveId(dispatcher,objectIndex(Index),Index1,Value).
-%conscriptSensor_myHealthPercentage(friendlyConscript,objectIndex(Index),Value).
-%conscriptSensor_visibleEnemiesCount(friendlyConscript,objectIndex(Index),Value).
+%conscriptSensor_myHealthPercentage(friendlyConscript2,objectIndex(Index),Value).
+%conscriptSensor_visibleEnemiesCount(friendlyConscript2,objectIndex(Index),Value).
+%conscriptSensor_myUnitId(friendlyConscript2,objectIndex(Index),Value).
+%conscriptSensor_isBackupRequested(friendlyConscript2,objectIndex(Index),Value).
+%conscriptSensor_amILowHealth(friendlyConscript2,objectIndex(Index),Value).
+%conscriptSensor_isAttackOrderPresent(friendlyConscript2,objectIndex(Index),Value).
+%conscriptSensor_currentGlobalObjectiveId(friendlyConscript2,objectIndex(Index),Value).
 %Actuators:
-%setOnActuator(conscriptActuator_hasAspOrder(friendlyConscript,objectIndex(Index),Value)) :-objectIndex(conscriptActuator, Index), .
-%setOnActuator(conscriptActuator_aspTargetX(friendlyConscript,objectIndex(Index),Value)) :-objectIndex(conscriptActuator, Index), .
-%setOnActuator(conscriptActuator_aspTargetY(friendlyConscript,objectIndex(Index),Value)) :-objectIndex(conscriptActuator, Index), .
-%setOnActuator(conscriptActuator_aspTargetZ(friendlyConscript,objectIndex(Index),Value)) :-objectIndex(conscriptActuator, Index), .
+setOnActuator(conscriptActuator_hasAspOrder(friendlyConscript2,objectIndex(Index),Value)) :-objectIndex(conscriptActuator, Index), .
+setOnActuator(conscriptActuator_aspTargetObjectiveId(friendlyConscript2,objectIndex(Index),Value)) :-objectIndex(conscriptActuator, Index), .

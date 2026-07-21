@@ -2160,6 +2160,26 @@ MonoBehaviour:
     - SoldierBrain
     - visibleEnemiesCount
     Count: 2
+  - myStrings:
+    - SoldierBrain
+    - myUnitId
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - isBackupRequested
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - amILowHealth
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - isAttackOrderPresent
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - currentGlobalObjectiveId
+    Count: 2
   _toMapProperties:
   - myStrings:
     - SoldierBrain
@@ -2168,6 +2188,26 @@ MonoBehaviour:
   - myStrings:
     - SoldierBrain
     - visibleEnemiesCount
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - myUnitId
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - isBackupRequested
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - amILowHealth
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - isAttackOrderPresent
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - currentGlobalObjectiveId
     Count: 2
   _propertyFeatures:
   - property:
@@ -2194,6 +2234,66 @@ MonoBehaviour:
     operation: 0
     specificValue: 
     counter: 0
+  - property:
+      myStrings:
+      - SoldierBrain
+      - myUnitId
+      Count: 2
+    windowWidth: 1
+    configurationName: conscriptSensor
+    _propertyAlias: conscriptSensor_myUnitId
+    propertyAliasHash: 176057439
+    operation: 0
+    specificValue: 
+    counter: 0
+  - property:
+      myStrings:
+      - SoldierBrain
+      - isBackupRequested
+      Count: 2
+    windowWidth: 1
+    configurationName: conscriptSensor
+    _propertyAlias: conscriptSensor_isBackupRequested
+    propertyAliasHash: -1757920106
+    operation: 0
+    specificValue: 
+    counter: 0
+  - property:
+      myStrings:
+      - SoldierBrain
+      - amILowHealth
+      Count: 2
+    windowWidth: 1
+    configurationName: conscriptSensor
+    _propertyAlias: conscriptSensor_amILowHealth
+    propertyAliasHash: -462046995
+    operation: 0
+    specificValue: 
+    counter: 0
+  - property:
+      myStrings:
+      - SoldierBrain
+      - isAttackOrderPresent
+      Count: 2
+    windowWidth: 1
+    configurationName: conscriptSensor
+    _propertyAlias: conscriptSensor_isAttackOrderPresent
+    propertyAliasHash: 266749155
+    operation: 0
+    specificValue: 
+    counter: 0
+  - property:
+      myStrings:
+      - SoldierBrain
+      - currentGlobalObjectiveId
+      Count: 2
+    windowWidth: 1
+    configurationName: conscriptSensor
+    _propertyAlias: conscriptSensor_currentGlobalObjectiveId
+    propertyAliasHash: -1229492236
+    operation: 0
+    specificValue: 
+    counter: 0
   _configurationName: conscriptSensor
   isInvariant: 0
   isFixedSize: 0
@@ -2207,6 +2307,11 @@ MonoBehaviour:
   generatedScripts:
   - conscriptSensor_myHealthPercentage.cs
   - conscriptSensor_visibleEnemiesCount.cs
+  - conscriptSensor_myUnitId.cs
+  - conscriptSensor_isBackupRequested.cs
+  - conscriptSensor_amILowHealth.cs
+  - conscriptSensor_isAttackOrderPresent.cs
+  - conscriptSensor_currentGlobalObjectiveId.cs
 --- !u!114 &474254741106744659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2251,6 +2356,10 @@ MonoBehaviour:
     - SoldierBrain
     - aspTargetZ
     Count: 2
+  - myStrings:
+    - SoldierBrain
+    - aspTargetObjectiveId
+    Count: 2
   _toMapProperties:
   - myStrings:
     - SoldierBrain
@@ -2267,6 +2376,10 @@ MonoBehaviour:
   - myStrings:
     - SoldierBrain
     - aspTargetZ
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - aspTargetObjectiveId
     Count: 2
   _propertyFeatures:
   - property:
@@ -2314,6 +2427,18 @@ MonoBehaviour:
     configurationName: conscriptActuator
     _propertyAlias: conscriptActuator_aspTargetZ
     propertyAliasHash: 1125798254
+    operation: 0
+    specificValue: 
+    counter: 0
+  - property:
+      myStrings:
+      - SoldierBrain
+      - aspTargetObjectiveId
+      Count: 2
+    windowWidth: 1
+    configurationName: conscriptActuator
+    _propertyAlias: conscriptActuator_aspTargetObjectiveId
+    propertyAliasHash: 184572078
     operation: 0
     specificValue: 
     counter: 0
