@@ -17,14 +17,16 @@ public class SoldierBrain : MonoBehaviour
     public float myHealthPercentage; 
     public int visibleEnemiesCount;
     public int myUnitId;
-    
-    // --- NUOVE VARIABILI PER GLI ATTUATORI ---
+
+// Tutti questi flag possono attivarsi contemporaneamente sara il brain del soldato a decidere quale ascoltare
+    public bool isBackupRequested = false;    // C'è un SOS in bacheca?
+    public bool amILowHealth = false;         // Sto per morire?
+    public bool isAttackOrderPresent = false; // Il Commander ha ordinato l'attacco?
+    public int currentGlobalObjectiveId = -1; // Verso quale ID dobbiamo attaccare?
+
     [Header("Attuatori da ASP (Scrittura)")]
-    public bool hasAspOrder = false; // ASP lo imposta a true quando dà un ordine
-    public float aspTargetX;
-    public float aspTargetY;
-    public float aspTargetZ;
-    // ----------------------------------------
+    public bool hasAspOrder = false;      // ASP ha preso il controllo? Nonostante cio se incontrassi un nemico sul mio percorso, lo ingaggeiro o farò retrofront
+    public int aspTargetObjectiveId = -1; // Verso quale ID obiettivo devo andare?
     
     private NavMeshAgent agent;
     private Transform currentTarget;
@@ -42,20 +44,26 @@ public class SoldierBrain : MonoBehaviour
 
     void Update()
     {
-        // 1. FASE SENSORI: Aggiorniamo i dati per ASP
+        // 1. FASE SENSORI: Aggiorniamo i dati per darli in pasto all'ASP
         UpdateSensors();
 
         // 2. FASE ATTUATORI: Chi comanda il movimento?
-        if (hasAspOrder)
+        if (hasAspOrder && aspTargetObjectiveId != -1)
         {
-            // Se ASP ha dettato delle coordinate, marcia verso quel punto!
-            // (Il FightScript continuerà comunque a sparare in automatico se vede nemici per strada)
+            // L'ASP HA DECISO DI MUOVERCI (per attaccare o aiutare)
             agent.isStopped = false;
-            agent.SetDestination(new Vector3(aspTargetX, aspTargetY, aspTargetZ));
+            
+            // Chiediamo al Dispatcher le coordinate esatte di quell'Obiettivo (0-9)
+            Transform targetPoint = globalDispatcher.GetObjective(aspTargetObjectiveId);
+            
+            if (targetPoint != null)
+            {
+                agent.SetDestination(targetPoint.position);
+            }
         }
         else 
         {
-            // Comportamento autonomo di base (se ASP non ha dato ordini)
+            // COMPORTAMENTO AUTONOMO (Se l'ASP non ha dato ordini di movimento)
             if (currentTarget == null)
             {
                 SearchForEnemy();
@@ -69,23 +77,27 @@ public class SoldierBrain : MonoBehaviour
 
     void UpdateSensors()
     {
+        // --- Aggiorno la Vita ---
         if (myUnitScript != null && myUnitScript.unit != null)
         {
             myCurrentHealth = myUnitScript.currentHealth;
             myHealthPercentage = ((float)myCurrentHealth / myUnitScript.unit.health) * 100f;
         }
-        // ESEMPIO DI INVIO MESSAGGIO:
-            // Se la vita è bassa e non abbiamo ancora chiesto aiuto...
-// LOGICA DI INVIO MESSAGGIO CON LOG
+
+        amILowHealth = myHealthPercentage < 30f;
+
+        // --- Logica Invio SOS ---
+        // Se la vita scende sotto il 70%, chiedo aiuto
         if (myHealthPercentage < 70f && Time.frameCount % 100 == 0) 
         {
-            // Invio il messaggio al dispatcher
-            globalDispatcher.PostMessage("NeedBackup", 1); 
-
-            // Log di conferma con l'ID univoco del soldato
-            Debug.Log($"<color=cyan>[SOLDIER-{myUnitId}]</color> Vita bassa ({myHealthPercentage}%). " +
-                      $"Inviato 'NeedBackup' al Dispatcher per obiettivo 1.");
+            // Passiamo l'ID dell'obiettivo attuale per dire agli alleati DOVE siamo
+            int idToPass = currentGlobalObjectiveId != -1 ? currentGlobalObjectiveId : 0;
+            globalDispatcher.PostMessage("NeedBackup", idToPass); 
+            
+            Debug.Log($"<color=cyan>[SOLDIER-{myUnitId}]</color> Vita ({myHealthPercentage}%). Inviato SOS per area {idToPass}.");
         }
+
+        // --- Aggiorno Nemici Visibili ---
         visibleEnemiesCount = 0; 
         Collider[] hits = Physics.OverlapSphere(transform.position, sightRange);
         foreach (Collider hit in hits)
@@ -95,8 +107,30 @@ public class SoldierBrain : MonoBehaviour
                 visibleEnemiesCount++; 
             }
         }
+
+        // --- Lettura della Bacheca (Dispatcher) ---
+        isBackupRequested = false;
+        isAttackOrderPresent = false;
+        currentGlobalObjectiveId = -1;
+
+        if (globalDispatcher != null && globalDispatcher.activeMessages != null)
+        {
+            foreach (Message msg in globalDispatcher.activeMessages)
+            {
+                if (msg.messageType == "NeedBackup")
+                {
+                    isBackupRequested = true;
+                }
+                else if (msg.messageType == "Attack")
+                {
+                    isAttackOrderPresent = true;
+                    currentGlobalObjectiveId = msg.objectiveId;
+                }
+            }
+        }
     }
 
+    // --- METODI DI COMBATTIMENTO BASE ---
     void SearchForEnemy()
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, sightRange);
@@ -113,6 +147,7 @@ public class SoldierBrain : MonoBehaviour
             }
         }
     }
+
     void EngageEnemy()
     {
         float distance = Vector3.Distance(transform.position, currentTarget.position);

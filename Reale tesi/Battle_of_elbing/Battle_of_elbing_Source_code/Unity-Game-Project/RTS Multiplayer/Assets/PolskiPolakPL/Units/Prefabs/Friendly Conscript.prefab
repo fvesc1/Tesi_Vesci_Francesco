@@ -2130,10 +2130,12 @@ MonoBehaviour:
   myHealthPercentage: 0
   visibleEnemiesCount: 0
   myUnitId: 0
+  isBackupRequested: 0
+  amILowHealth: 0
+  isAttackOrderPresent: 0
+  currentGlobalObjectiveId: -1
   hasAspOrder: 0
-  aspTargetX: 0
-  aspTargetY: 0
-  aspTargetZ: 0
+  aspTargetObjectiveId: -1
 --- !u!114 &1013375036830695914
 MonoBehaviour:
   m_ObjectHideFlags: 0
