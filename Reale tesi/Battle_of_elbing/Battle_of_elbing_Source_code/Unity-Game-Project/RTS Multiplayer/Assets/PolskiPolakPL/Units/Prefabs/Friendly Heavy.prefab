@@ -2230,17 +2230,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   globalDispatcher: {fileID: 0}
-  sightRange: 1500
+  sightRange: 13
   attackRange: 5
   enemyTag: Enemy
   myCurrentHealth: 0
   myHealthPercentage: 0
   visibleEnemiesCount: 0
   myUnitId: 0
+  isBackupRequested: 0
+  amILowHealth: 0
+  isAttackOrderPresent: 0
+  currentGlobalObjectiveId: -1
   hasAspOrder: 0
-  aspTargetX: 0
-  aspTargetY: 0
-  aspTargetZ: 0
+  aspTargetObjectiveId: -1
 --- !u!114 &-735550056281830279
 MonoBehaviour:
   m_ObjectHideFlags: 0
