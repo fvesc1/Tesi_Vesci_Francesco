@@ -10,5 +10,5 @@
 %sniperSensor_isAttackOrderPresent(friendlySniper,objectIndex(Index),Value).
 %sniperSensor_currentGlobalObjectiveId(friendlySniper,objectIndex(Index),Value).
 %Actuators:
-setOnActuator(sniperActuator_hasAspOrder(friendlySniper,objectIndex(Index),Value)) :-objectIndex(sniperActuator, Index), .
-setOnActuator(sniperActuator_aspTargetObjectiveId(friendlySniper,objectIndex(Index),Value)) :-objectIndex(sniperActuator, Index), .
+%setOnActuator(sniperActuator_hasAspOrder(friendlySniper,objectIndex(Index),Value)) :-objectIndex(sniperActuator, Index), .
+%setOnActuator(sniperActuator_aspTargetObjectiveId(friendlySniper,objectIndex(Index),Value)) :-objectIndex(sniperActuator, Index), .

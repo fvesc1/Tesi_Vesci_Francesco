@@ -2409,8 +2409,6 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   - typeName: ThinkEngine.heavySensor_myHealthPercentage, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  - typeName: ThinkEngine.heavySensor_myCurrentHealth, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   - typeName: ThinkEngine.heavySensor_myUnitId, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   - typeName: ThinkEngine.heavySensor_isBackupRequested, Assembly-CSharp, Version=0.0.0.0,

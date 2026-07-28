@@ -2230,7 +2230,17 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   - typeName: ThinkEngine.sniperSensor_visibleEnemiesCount, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  recompile: 1
+  - typeName: ThinkEngine.sniperSensor_myUnitId, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - typeName: ThinkEngine.sniperSensor_isBackupRequested, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - typeName: ThinkEngine.sniperSensor_amILowHealth, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - typeName: ThinkEngine.sniperSensor_isAttackOrderPresent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - typeName: ThinkEngine.sniperSensor_currentGlobalObjectiveId, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  recompile: 0
   teRecompile: 0
   generatedScripts:
   - sniperSensor_myHealthPercentage.cs

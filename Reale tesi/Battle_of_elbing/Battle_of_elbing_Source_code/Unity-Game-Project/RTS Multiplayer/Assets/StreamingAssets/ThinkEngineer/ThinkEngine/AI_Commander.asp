@@ -6,9 +6,9 @@
 % setOnActuator(aI_CommanderActuator_executePurchase(aI_Commander,objectIndex(Index),Value)) :-objectIndex(aI_CommanderActuator, Index), .
 % setOnActuator(aI_CommanderActuator_unitTypeToBuy(aI_Commander,objectIndex(Index),Value)) :-objectIndex(aI_CommanderActuator, Index), .
 % setOnActuator(aI_CommanderActuator_EmergencyAction(aI_Commander,objectIndex(Index),Value)) :-objectIndex(aI_CommanderActuator, Index), .
+% setOnActuator(aI_CommanderActuator_executeAttackObjectiveId(aI_Commander,objectIndex(Index),Value)) :-objectIndex(aI_CommanderActuator, Index), .
 
-
-% 1. Cosi non provo a comprare unita se sono gia al massimo
+% 1. Cosi non si prova a comprare unita se sono gia al massimo
 has_population_space :- aI_CommanderSensor_currentUnitCount(aI_Commander, objectIndex(Index), Current), aI_CommanderSensor_maxUnitCount(aI_Commander, objectIndex(_), Max), Current < Max.
 
 % 2. Controllo se ho abbastanza soldi
@@ -38,7 +38,6 @@ choose_unit(1) :- has_population_space, can_afford_conscript, not can_afford_hea
 choose_unit(1) :- has_population_space, can_afford_conscript, in_emergency.
 
 %%% attuatori
-
 % Inietta il tipo di unità da comprare sull'attuatore (1 = Conscript, 2 = Sniper, 3 = Heavy)
 setOnActuator(aI_CommanderActuator_unitTypeToBuy(aI_Commander, objectIndex(Index), Type)) :- objectIndex(aI_CommanderActuator, Index), choose_unit(Type).
 
@@ -48,4 +47,10 @@ setOnActuator(aI_CommanderActuator_executePurchase(aI_Commander, objectIndex(Ind
 % Attiva l'EmergencyAction (true) solo se la regola interna in_emergency è vera
 setOnActuator(aI_CommanderActuator_EmergencyAction(aI_Commander, objectIndex(Index), true)) :- objectIndex(aI_CommanderActuator, Index), in_emergency.
 
+% Attuatore per inviare l'ID dell'obiettivo 4 sul Dispatcher tramite C#
+setOnActuator(aI_CommanderActuator_executeAttackObjectiveId(aI_Commander, objectIndex(Index), 4)) :- objectIndex(aI_CommanderActuator, Index), should_attack_target_four.
 
+
+
+% Vogliamo ordinare l'attacco all'obiettivo 4 non appena abbiamo almeno 1 unità in vita (o puoi farlo partire sempre)
+should_attack_target_four :- aI_CommanderSensor_currentUnitCount(aI_Commander, objectIndex(_), Count), Count >= 1.

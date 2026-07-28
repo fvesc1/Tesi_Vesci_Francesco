@@ -10,5 +10,5 @@
 %conscriptSensor_isAttackOrderPresent(friendlyConscript2,objectIndex(Index),Value).
 %conscriptSensor_currentGlobalObjectiveId(friendlyConscript2,objectIndex(Index),Value).
 %Actuators:
-setOnActuator(conscriptActuator_hasAspOrder(friendlyConscript2,objectIndex(Index),Value)) :-objectIndex(conscriptActuator, Index), .
-setOnActuator(conscriptActuator_aspTargetObjectiveId(friendlyConscript2,objectIndex(Index),Value)) :-objectIndex(conscriptActuator, Index), .
+%setOnActuator(conscriptActuator_hasAspOrder(friendlyConscript2,objectIndex(Index),Value)) :-objectIndex(conscriptActuator, Index), .
+%setOnActuator(conscriptActuator_aspTargetObjectiveId(friendlyConscript2,objectIndex(Index),Value)) :-objectIndex(conscriptActuator, Index), .

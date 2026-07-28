@@ -10,5 +10,5 @@
 %heavySensor_isAttackOrderPresent(friendlyHeavy,objectIndex(Index),Value).
 %heavySensor_currentGlobalObjectiveId(friendlyHeavy,objectIndex(Index),Value).
 %Actuators:
-setOnActuator(heavyActuator_hasAspOrder(friendlyHeavy,objectIndex(Index),Value)) :-objectIndex(heavyActuator, Index), .
-setOnActuator(heavyActuator_aspTargetObjectiveId(friendlyHeavy,objectIndex(Index),Value)) :-objectIndex(heavyActuator, Index), .
+%setOnActuator(heavyActuator_hasAspOrder(friendlyHeavy,objectIndex(Index),Value)) :-objectIndex(heavyActuator, Index), .
+%setOnActuator(heavyActuator_aspTargetObjectiveId(friendlyHeavy,objectIndex(Index),Value)) :-objectIndex(heavyActuator, Index), .
