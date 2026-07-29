@@ -13,19 +13,6 @@
 %setOnActuator(conscriptActuator_hasAspOrder(friendlyConscript2,objectIndex(Index),Value)) :-objectIndex(conscriptActuator, Index), .
 %setOnActuator(conscriptActuator_aspTargetObjectiveId(friendlyConscript2,objectIndex(Index),Value)) :-objectIndex(conscriptActuator, Index), .
 
-
-% ==========================================
-% LOGICA MOVIMENTO (Versione con Unificazione dell'Indice I)
-% ==========================================
-
-% ==========================================
-% LOGICA MOVIMENTO CONSCRIPT (Mapping tramite myUnitId)
-% ==========================================
-
-% ==========================================
-% LOGICA CONSCRIPT (Pattern con Indice Dinamico)
-% ==========================================
-
 % 1. Estraiamo i valori dai sensori. 
 % Usando "_" ignoriamo l'ID del sensore, evitando il mismatch con l'attuatore!
 orderStatus(Unit, true)  :- conscriptSensor_isAttackOrderPresent(Unit, objectIndex(_), true).
@@ -37,12 +24,14 @@ targetId(Unit, TargetId) :- conscriptSensor_currentGlobalObjectiveId(Unit, objec
 % Proprio come nel tuo esempio: setOnActuator(...) :- objectIndex(actuator, I), status(X).
 
 % Applica lo stato dell'ordine (true/false) all'attuatore
-setOnActuator(conscriptActuator_hasAspOrder(Unit, objectIndex(I), Status)) :- 
-    objectIndex(conscriptActuator, I), 
+setOnActuator(conscriptActuator_hasAspOrder(Unit, objectIndex(BrainID), Status)) :- 
+    currentBrainID(BrainID),
+    objectIndex(conscriptActuator, BrainID), 
     orderStatus(Unit, Status).
 
 % Applica il Target ID all'attuatore solo se l'ordine è true
-setOnActuator(conscriptActuator_aspTargetObjectiveId(Unit, objectIndex(I), TargetId)) :- 
-    objectIndex(conscriptActuator, I), 
+setOnActuator(conscriptActuator_aspTargetObjectiveId(Unit, objectIndex(BrainID), TargetId)) :- 
+    currentBrainID(BrainID),
+    objectIndex(conscriptActuator, BrainID), 
     orderStatus(Unit, true),
     targetId(Unit, TargetId).

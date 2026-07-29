@@ -2417,7 +2417,7 @@ MonoBehaviour:
     Multiplayer/Assets/StreamingAssets\ThinkEngineer\ThinkEngine
   AIFilesPrefix:
   - Friendly_Sniper
-  prefabBrain: 0
+  prefabBrain: 1
   solverEnum: 1
   _executeReasonerOn: When Sensors are ready
   specificAIFile: 0

@@ -170,7 +170,7 @@ public class SoldierBrain : MonoBehaviour
             }
         }
     }
-
+    // questo non ha lif ed e corretto
     void MoveToAspObjective()
     {
         if (globalDispatcher == null) return;
@@ -187,7 +187,25 @@ public class SoldierBrain : MonoBehaviour
         }
         //}
     }
+    
+    /*
+    void MoveToAspObjective()
+    {
+        if (globalDispatcher == null) return;
 
+        // OTTIMIZZAZIONE: Imposta la destinazione sulla NavMesh SOLO se l'obiettivo è cambiato
+        if (aspTargetObjectiveId != lastAssignedObjectiveId) //TODO capire cosa non va in questo if
+        {
+        Transform targetPoint = globalDispatcher.GetObjective(aspTargetObjectiveId);
+        if (targetPoint != null && agent != null && agent.isOnNavMesh)
+        {
+            agent.isStopped = false;
+            agent.SetDestination(targetPoint.position);
+            lastAssignedObjectiveId = aspTargetObjectiveId;
+        }
+        }
+    }
+*/
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
