@@ -2241,6 +2241,8 @@ MonoBehaviour:
   amILowHealth: 0
   isAttackOrderPresent: 0
   currentGlobalObjectiveId: -1
+  isDefending: 0
+  defendedObjectiveId: -1
   hasAspOrder: 0
   aspTargetObjectiveId: -1
 --- !u!114 &-735550056281830279
@@ -2287,6 +2289,14 @@ MonoBehaviour:
     - SoldierBrain
     - currentGlobalObjectiveId
     Count: 2
+  - myStrings:
+    - SoldierBrain
+    - isDefending
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - defendedObjectiveId
+    Count: 2
   _toMapProperties:
   - myStrings:
     - SoldierBrain
@@ -2315,6 +2325,14 @@ MonoBehaviour:
   - myStrings:
     - SoldierBrain
     - currentGlobalObjectiveId
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - isDefending
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - defendedObjectiveId
     Count: 2
   _propertyFeatures:
   - property:
@@ -2401,6 +2419,30 @@ MonoBehaviour:
     operation: 0
     specificValue: 
     counter: 0
+  - property:
+      myStrings:
+      - SoldierBrain
+      - isDefending
+      Count: 2
+    windowWidth: 1
+    configurationName: heavySensor
+    _propertyAlias: heavySensor_isDefending
+    propertyAliasHash: 1713904324
+    operation: 0
+    specificValue: 
+    counter: 0
+  - property:
+      myStrings:
+      - SoldierBrain
+      - defendedObjectiveId
+      Count: 2
+    windowWidth: 1
+    configurationName: heavySensor
+    _propertyAlias: heavySensor_defendedObjectiveId
+    propertyAliasHash: 1038957481
+    operation: 0
+    specificValue: 
+    counter: 0
   _configurationName: heavySensor
   isInvariant: 0
   isFixedSize: 0
@@ -2419,7 +2461,7 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   - typeName: ThinkEngine.heavySensor_currentGlobalObjectiveId, Assembly-CSharp,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  recompile: 0
+  recompile: 1
   teRecompile: 0
   generatedScripts:
   - heavySensor_visibleEnemiesCount.cs
@@ -2429,6 +2471,8 @@ MonoBehaviour:
   - heavySensor_amILowHealth.cs
   - heavySensor_isAttackOrderPresent.cs
   - heavySensor_currentGlobalObjectiveId.cs
+  - heavySensor_isDefending.cs
+  - heavySensor_defendedObjectiveId.cs
 --- !u!114 &1919353516174860370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2592,7 +2636,7 @@ MonoBehaviour:
   _chosenSensorConfigurations:
   - dispatcherSensor
   - heavySensor
-  AIFilesPath: C:/Users/Dell/Desktop/Tesi_Vesci_Francesco/Reale tesi/Battle_of_elbing/Battle_of_elbing_Source_code/Unity-Game-Project/RTS
+  AIFilesPath: C:/Users/dodov/Desktop/Tesi_Vesci_Francesco/Reale tesi/Battle_of_elbing/Battle_of_elbing_Source_code/Unity-Game-Project/RTS
     Multiplayer/Assets/StreamingAssets\ThinkEngineer\ThinkEngine
   AIFilesPrefix:
   - Friendly_Heavy

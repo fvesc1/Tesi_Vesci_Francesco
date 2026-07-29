@@ -2062,6 +2062,8 @@ MonoBehaviour:
   amILowHealth: 0
   isAttackOrderPresent: 0
   currentGlobalObjectiveId: -1
+  isDefending: 0
+  defendedObjectiveId: -1
   hasAspOrder: 0
   aspTargetObjectiveId: -1
 --- !u!114 &2693313757487105557
@@ -2108,6 +2110,14 @@ MonoBehaviour:
     - SoldierBrain
     - currentGlobalObjectiveId
     Count: 2
+  - myStrings:
+    - SoldierBrain
+    - isDefending
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - defendedObjectiveId
+    Count: 2
   _toMapProperties:
   - myStrings:
     - SoldierBrain
@@ -2136,6 +2146,14 @@ MonoBehaviour:
   - myStrings:
     - SoldierBrain
     - currentGlobalObjectiveId
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - isDefending
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - defendedObjectiveId
     Count: 2
   _propertyFeatures:
   - property:
@@ -2222,6 +2240,30 @@ MonoBehaviour:
     operation: 0
     specificValue: 
     counter: 0
+  - property:
+      myStrings:
+      - SoldierBrain
+      - isDefending
+      Count: 2
+    windowWidth: 1
+    configurationName: sniperSensor
+    _propertyAlias: sniperSensor_isDefending
+    propertyAliasHash: 1619140012
+    operation: 0
+    specificValue: 
+    counter: 0
+  - property:
+      myStrings:
+      - SoldierBrain
+      - defendedObjectiveId
+      Count: 2
+    windowWidth: 1
+    configurationName: sniperSensor
+    _propertyAlias: sniperSensor_defendedObjectiveId
+    propertyAliasHash: 1211599341
+    operation: 0
+    specificValue: 
+    counter: 0
   _configurationName: sniperSensor
   isInvariant: 0
   isFixedSize: 0
@@ -2240,7 +2282,7 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   - typeName: ThinkEngine.sniperSensor_currentGlobalObjectiveId, Assembly-CSharp,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  recompile: 0
+  recompile: 1
   teRecompile: 0
   generatedScripts:
   - sniperSensor_myHealthPercentage.cs
@@ -2250,6 +2292,8 @@ MonoBehaviour:
   - sniperSensor_amILowHealth.cs
   - sniperSensor_isAttackOrderPresent.cs
   - sniperSensor_currentGlobalObjectiveId.cs
+  - sniperSensor_isDefending.cs
+  - sniperSensor_defendedObjectiveId.cs
 --- !u!114 &-3188257877975265700
 MonoBehaviour:
   m_ObjectHideFlags: 0

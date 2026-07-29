@@ -2134,6 +2134,8 @@ MonoBehaviour:
   amILowHealth: 0
   isAttackOrderPresent: 0
   currentGlobalObjectiveId: -1
+  isDefending: 0
+  defendedObjectiveId: -1
   hasAspOrder: 0
   aspTargetObjectiveId: -1
 --- !u!114 &1013375036830695914
@@ -2180,6 +2182,14 @@ MonoBehaviour:
     - SoldierBrain
     - currentGlobalObjectiveId
     Count: 2
+  - myStrings:
+    - SoldierBrain
+    - isDefending
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - defendedObjectiveId
+    Count: 2
   _toMapProperties:
   - myStrings:
     - SoldierBrain
@@ -2208,6 +2218,14 @@ MonoBehaviour:
   - myStrings:
     - SoldierBrain
     - currentGlobalObjectiveId
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - isDefending
+    Count: 2
+  - myStrings:
+    - SoldierBrain
+    - defendedObjectiveId
     Count: 2
   _propertyFeatures:
   - property:
@@ -2294,6 +2312,30 @@ MonoBehaviour:
     operation: 0
     specificValue: 
     counter: 0
+  - property:
+      myStrings:
+      - SoldierBrain
+      - isDefending
+      Count: 2
+    windowWidth: 1
+    configurationName: conscriptSensor
+    _propertyAlias: conscriptSensor_isDefending
+    propertyAliasHash: -702255836
+    operation: 0
+    specificValue: 
+    counter: 0
+  - property:
+      myStrings:
+      - SoldierBrain
+      - defendedObjectiveId
+      Count: 2
+    windowWidth: 1
+    configurationName: conscriptSensor
+    _propertyAlias: conscriptSensor_defendedObjectiveId
+    propertyAliasHash: 1464011159
+    operation: 0
+    specificValue: 
+    counter: 0
   _configurationName: conscriptSensor
   isInvariant: 0
   isFixedSize: 0
@@ -2312,7 +2354,7 @@ MonoBehaviour:
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   - typeName: ThinkEngine.conscriptSensor_currentGlobalObjectiveId, Assembly-CSharp,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  recompile: 0
+  recompile: 1
   teRecompile: 0
   generatedScripts:
   - conscriptSensor_myHealthPercentage.cs
@@ -2322,6 +2364,8 @@ MonoBehaviour:
   - conscriptSensor_amILowHealth.cs
   - conscriptSensor_isAttackOrderPresent.cs
   - conscriptSensor_currentGlobalObjectiveId.cs
+  - conscriptSensor_isDefending.cs
+  - conscriptSensor_defendedObjectiveId.cs
 --- !u!114 &474254741106744659
 MonoBehaviour:
   m_ObjectHideFlags: 0

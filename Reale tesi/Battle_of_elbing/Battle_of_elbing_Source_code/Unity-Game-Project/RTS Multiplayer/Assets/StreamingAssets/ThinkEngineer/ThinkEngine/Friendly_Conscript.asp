@@ -13,25 +13,32 @@
 %setOnActuator(conscriptActuator_hasAspOrder(friendlyConscript2,objectIndex(Index),Value)) :-objectIndex(conscriptActuator, Index), .
 %setOnActuator(conscriptActuator_aspTargetObjectiveId(friendlyConscript2,objectIndex(Index),Value)) :-objectIndex(conscriptActuator, Index), .
 
-% 1. Estraiamo i valori dai sensori. 
-% Usando "_" ignoriamo l'ID del sensore, evitando il mismatch con l'attuatore!
-orderStatus(Unit, true)  :- conscriptSensor_isAttackOrderPresent(Unit, objectIndex(_), true).
-orderStatus(Unit, false) :- conscriptSensor_isAttackOrderPresent(Unit, objectIndex(_), false).
+% 1. Estrazione del sensore di difesa (Legato all'ID unico del soldato)
+inDefense(Unit, BrainID, true)  :- conscriptSensor_isDefending(Unit, objectIndex(BrainID), true).
+inDefense(Unit, BrainID, false) :- conscriptSensor_isDefending(Unit, objectIndex(BrainID), false).
 
-targetId(Unit, TargetId) :- conscriptSensor_currentGlobalObjectiveId(Unit, objectIndex(_), TargetId).
+% 2. Estrazione dello stato dell'ordine (Legato all'ID)
+orderStatus(Unit, BrainID, true) :- 
+    conscriptSensor_isAttackOrderPresent(Unit, objectIndex(BrainID), true),
+    inDefense(Unit, BrainID, false).
 
-% 2. Impostiamo gli attuatori agganciandoli ESCLUSIVAMENTE al loro indice (I)
-% Proprio come nel tuo esempio: setOnActuator(...) :- objectIndex(actuator, I), status(X).
+orderStatus(Unit, BrainID, false) :- 
+    conscriptSensor_isAttackOrderPresent(Unit, objectIndex(BrainID), false).
 
-% Applica lo stato dell'ordine (true/false) all'attuatore
+orderStatus(Unit, BrainID, false) :- 
+    inDefense(Unit, BrainID, true).
+
+targetId(Unit, BrainID, TargetId) :- 
+    conscriptSensor_currentGlobalObjectiveId(Unit, objectIndex(BrainID), TargetId).
+
+% 3. Applicazione agli attuatori (solo per il currentBrainID)
 setOnActuator(conscriptActuator_hasAspOrder(Unit, objectIndex(BrainID), Status)) :- 
     currentBrainID(BrainID),
     objectIndex(conscriptActuator, BrainID), 
-    orderStatus(Unit, Status).
+    orderStatus(Unit, BrainID, Status).
 
-% Applica il Target ID all'attuatore solo se l'ordine è true
 setOnActuator(conscriptActuator_aspTargetObjectiveId(Unit, objectIndex(BrainID), TargetId)) :- 
     currentBrainID(BrainID),
     objectIndex(conscriptActuator, BrainID), 
-    orderStatus(Unit, true),
-    targetId(Unit, TargetId).
+    orderStatus(Unit, BrainID, true),
+    targetId(Unit, BrainID, TargetId).

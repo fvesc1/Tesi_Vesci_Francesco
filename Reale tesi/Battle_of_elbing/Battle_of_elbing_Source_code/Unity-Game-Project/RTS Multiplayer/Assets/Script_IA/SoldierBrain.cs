@@ -19,9 +19,13 @@ public class SoldierBrain : MonoBehaviour
     public int myUnitId;
 
     public bool isBackupRequested = false;    
-    public bool amILowHealth = false;         
+    public bool amILowHealth = false;        
     public bool isAttackOrderPresent = false; 
     public int currentGlobalObjectiveId = -1; 
+
+    [Header("Stato Difesa (Sensori per ASP gestiti dall'Obiettivo)")]
+    public bool isDefending = false; 
+    public int defendedObjectiveId = -1; 
 
     [Header("Attuatori da ASP (Scrittura)")]
     public bool hasAspOrder = false;      
@@ -34,7 +38,7 @@ public class SoldierBrain : MonoBehaviour
 
     // OTTIMIZZAZIONE: Per evitare micro-freeze
     private float sensorTimer = 0f;
-    private float sensorInterval = 0.15f; // Esegue la scansione ~6 volte al secondo, non 60!
+    private float sensorInterval = 0.15f; // Esegue la scansione ~6 volte al secondo
     private int lastAssignedObjectiveId = -2;
 
     void Start()
@@ -52,7 +56,7 @@ public class SoldierBrain : MonoBehaviour
 
     void Update()
     {
-        // 1. OTTIMIZZAZIONE: I sensori scansiscono il mondo a intervalli regolari (no lag)
+        // 1. OTTIMIZZAZIONE: I sensori scansiscono il mondo a intervalli regolari
         sensorTimer += Time.deltaTime;
         if (sensorTimer >= sensorInterval)
         {
@@ -61,14 +65,14 @@ public class SoldierBrain : MonoBehaviour
             SearchForEnemy();
         }
 
-        // 2. Logica di esecuzione ad ogni frame (molto leggera)
+        // 2. Logica di esecuzione ad ogni frame
         if (currentTarget != null)
         {
-            EngageEnemy();
+            EngageEnemy(); // Se vede un nemico, ignora tutto e combatte/scappa
         }
         else if (hasAspOrder && aspTargetObjectiveId >= 0)
         {
-            MoveToAspObjective();
+            MoveToAspObjective(); // Se non ha nemici, segue l'ordine dell'ASP
         }
         else
         {
@@ -81,7 +85,6 @@ public class SoldierBrain : MonoBehaviour
 
     void UpdateSensors()
     {
-        // --- Salute ---
         if (myUnitScript != null && myUnitScript.unit != null)
         {
             myCurrentHealth = myUnitScript.currentHealth;
@@ -110,6 +113,20 @@ public class SoldierBrain : MonoBehaviour
             }
         }
     }
+
+    public void AssignDefenseDuty(int objectiveId)
+    {
+        isDefending = true;
+        defendedObjectiveId = objectiveId;
+        Debug.Log($"<color=yellow>[SoldierBrain]</color> Unità {myUnitId} precettata per difendere l'obiettivo {objectiveId}");
+    }
+
+    public void ClearDefenseDuty()
+    {
+        isDefending = false;
+        defendedObjectiveId = -1;
+    }
+
 
     void SearchForEnemy()
     {
@@ -170,14 +187,11 @@ public class SoldierBrain : MonoBehaviour
             }
         }
     }
-    // questo non ha lif ed e corretto
+    
     void MoveToAspObjective()
     {
         if (globalDispatcher == null) return;
 
-        // OTTIMIZZAZIONE: Imposta la destinazione sulla NavMesh SOLO se l'obiettivo è cambiato
-        //if (aspTargetObjectiveId != lastAssignedObjectiveId) //TODO capire cosa non va in questo if
-        //{
         Transform targetPoint = globalDispatcher.GetObjective(aspTargetObjectiveId);
         if (targetPoint != null && agent != null && agent.isOnNavMesh)
         {
@@ -185,27 +199,8 @@ public class SoldierBrain : MonoBehaviour
             agent.SetDestination(targetPoint.position);
             lastAssignedObjectiveId = aspTargetObjectiveId;
         }
-        //}
     }
     
-    /*
-    void MoveToAspObjective()
-    {
-        if (globalDispatcher == null) return;
-
-        // OTTIMIZZAZIONE: Imposta la destinazione sulla NavMesh SOLO se l'obiettivo è cambiato
-        if (aspTargetObjectiveId != lastAssignedObjectiveId) //TODO capire cosa non va in questo if
-        {
-        Transform targetPoint = globalDispatcher.GetObjective(aspTargetObjectiveId);
-        if (targetPoint != null && agent != null && agent.isOnNavMesh)
-        {
-            agent.isStopped = false;
-            agent.SetDestination(targetPoint.position);
-            lastAssignedObjectiveId = aspTargetObjectiveId;
-        }
-        }
-    }
-*/
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
