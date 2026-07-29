@@ -2302,6 +2302,16 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   - typeName: ThinkEngine.conscriptSensor_visibleEnemiesCount, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  - typeName: ThinkEngine.conscriptSensor_myUnitId, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - typeName: ThinkEngine.conscriptSensor_isBackupRequested, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - typeName: ThinkEngine.conscriptSensor_amILowHealth, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - typeName: ThinkEngine.conscriptSensor_isAttackOrderPresent, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - typeName: ThinkEngine.conscriptSensor_currentGlobalObjectiveId, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   recompile: 0
   teRecompile: 0
   generatedScripts:
@@ -2475,11 +2485,11 @@ MonoBehaviour:
   _chosenSensorConfigurations:
   - dispatcherSensor
   - conscriptSensor
-  AIFilesPath: C:/Users/Dell/Desktop/Tesi_Vesci_Francesco/Reale tesi/Battle_of_elbing/Battle_of_elbing_Source_code/Unity-Game-Project/RTS
+  AIFilesPath: C:/Users/dodov/Desktop/Tesi_Vesci_Francesco/Reale tesi/Battle_of_elbing/Battle_of_elbing_Source_code/Unity-Game-Project/RTS
     Multiplayer/Assets/StreamingAssets\ThinkEngineer\ThinkEngine
   AIFilesPrefix:
   - Friendly_Conscript
-  prefabBrain: 0
+  prefabBrain: 1
   solverEnum: 1
   _executeReasonerOn: When Sensors are ready
   specificAIFile: 0

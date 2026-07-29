@@ -16,18 +16,35 @@
 % LOGICA DI RAGIONAMENTO: SNIPER
 % ==========================================
 
-% 1. Determina se questa specifica unità ha un ordine di attacco valido
-has_attack_order(Unit, TargetId) :- sniperSensor_isAttackOrderPresent(Unit, objectIndex(Index), true), sniperSensor_currentGlobalObjectiveId(Unit, objectIndex(Index), TargetId).
-
 % ==========================================
-% ATTUATORI
+% LOGICA SNIPER (Multi-Istanza Runtime)
 % ==========================================
 
-% 2. Se c'è l'ordine, imposta l'ID del bersaglio
-setOnActuator(sniperActuator_aspTargetObjectiveId(Unit, objectIndex(Index), TargetId)) :- objectIndex(sniperActuator, Index), has_attack_order(Unit, TargetId).
+% ==========================================
+% LOGICA SNIPER (Pattern con Indice Dinamico)
+% ==========================================
 
-% 3. Se c'è l'ordine, accendi l'attuatore di movimento (true)
-setOnActuator(sniperActuator_hasAspOrder(Unit, objectIndex(Index), true)) :- objectIndex(sniperActuator, Index), has_attack_order(Unit, _).
+% 1. Estrazione valori dai sensori dello Sniper (ignorando l'ID sensore con "_")
+% ==========================================
+% LOGICA SNIPER (con currentBrainID)
+% ==========================================
 
-% 4. Se NON c'è l'ordine, spegni l'attuatore di movimento (false).
-setOnActuator(sniperActuator_hasAspOrder(Unit, objectIndex(Index), false)) :- objectIndex(sniperActuator, Index), sniperSensor_isAttackOrderPresent(Unit, _, _), not has_attack_order(Unit, _).
+% 1. Estrazione dai sensori
+sniperOrderStatus(Unit, true)  :- sniperSensor_isAttackOrderPresent(Unit, objectIndex(_), true).
+sniperOrderStatus(Unit, false) :- sniperSensor_isAttackOrderPresent(Unit, objectIndex(_), false).
+
+sniperTargetId(Unit, TargetId) :- sniperSensor_currentGlobalObjectiveId(Unit, objectIndex(_), TargetId).
+
+% 2. Applicazione agli attuatori con currentBrainID
+setOnActuator(sniperActuator_hasAspOrder(Unit, objectIndex(BrainID), Status)) :- 
+    currentBrainID(BrainID),
+    objectIndex(sniperActuator, BrainID), 
+    sniperOrderStatus(Unit, Status).
+
+setOnActuator(sniperActuator_aspTargetObjectiveId(Unit, objectIndex(BrainID), TargetId)) :- 
+    currentBrainID(BrainID),
+    objectIndex(sniperActuator, BrainID), 
+    sniperOrderStatus(Unit, true),
+    sniperTargetId(Unit, TargetId).
+
+#show setOnActuator/1.

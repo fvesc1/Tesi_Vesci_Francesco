@@ -176,16 +176,16 @@ public class SoldierBrain : MonoBehaviour
         if (globalDispatcher == null) return;
 
         // OTTIMIZZAZIONE: Imposta la destinazione sulla NavMesh SOLO se l'obiettivo è cambiato
-        if (aspTargetObjectiveId != lastAssignedObjectiveId)
+        //if (aspTargetObjectiveId != lastAssignedObjectiveId) //TODO capire cosa non va in questo if
+        //{
+        Transform targetPoint = globalDispatcher.GetObjective(aspTargetObjectiveId);
+        if (targetPoint != null && agent != null && agent.isOnNavMesh)
         {
-            Transform targetPoint = globalDispatcher.GetObjective(aspTargetObjectiveId);
-            if (targetPoint != null && agent != null && agent.isOnNavMesh)
-            {
-                agent.isStopped = false;
-                agent.SetDestination(targetPoint.position);
-                lastAssignedObjectiveId = aspTargetObjectiveId;
-            }
+            agent.isStopped = false;
+            agent.SetDestination(targetPoint.position);
+            lastAssignedObjectiveId = aspTargetObjectiveId;
         }
+        //}
     }
 
     private void OnDrawGizmosSelected()

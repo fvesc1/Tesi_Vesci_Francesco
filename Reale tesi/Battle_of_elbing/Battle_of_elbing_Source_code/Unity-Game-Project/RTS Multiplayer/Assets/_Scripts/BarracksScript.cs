@@ -27,6 +27,7 @@ public class BarracksScript : MonoBehaviour
         }
         playerScript.SpendMoney(unitSO.cost);
         GameObject _unitGO = Instantiate(unitSO.unitGO, transform.position, transform.rotation, playerScript.UnitsT);
+        _unitGO.name = _unitGO.name.Replace("(Clone)", "");
         NavMeshAgent _unitAI = _unitGO.GetComponent<NavMeshAgent>();
         _unitAI.SetDestination(target.position);
     }

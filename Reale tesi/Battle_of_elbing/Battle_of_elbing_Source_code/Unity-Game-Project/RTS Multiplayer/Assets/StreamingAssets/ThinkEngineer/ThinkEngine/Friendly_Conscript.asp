@@ -12,22 +12,37 @@
 %Actuators:
 %setOnActuator(conscriptActuator_hasAspOrder(friendlyConscript2,objectIndex(Index),Value)) :-objectIndex(conscriptActuator, Index), .
 %setOnActuator(conscriptActuator_aspTargetObjectiveId(friendlyConscript2,objectIndex(Index),Value)) :-objectIndex(conscriptActuator, Index), .
-% ==========================================
-% LOGICA CONSCRIPT (Fanteria Bilanciata)
-% ==========================================
 
-% 1. L'ordine è valido solo se c'è l'ordine E la salute NON è critica
-has_attack_order(Unit, TargetId) :- conscriptSensor_isAttackOrderPresent(Unit, _, true), conscriptSensor_currentGlobalObjectiveId(Unit, _, TargetId), conscriptSensor_amILowHealth(Unit, _, false).
 
 % ==========================================
-% ATTUATORI
+% LOGICA MOVIMENTO (Versione con Unificazione dell'Indice I)
 % ==========================================
 
-% Imposta l'obiettivo se l'ordine è valido
-setOnActuator(conscriptActuator_aspTargetObjectiveId(Unit, objectIndex(Index), TargetId)) :- objectIndex(conscriptActuator, Index), has_attack_order(Unit, TargetId).
+% ==========================================
+% LOGICA MOVIMENTO CONSCRIPT (Mapping tramite myUnitId)
+% ==========================================
 
-% Attiva il movimento se l'ordine è valido
-setOnActuator(conscriptActuator_hasAspOrder(Unit, objectIndex(Index), true)) :- objectIndex(conscriptActuator, Index), has_attack_order(Unit, _).
+% ==========================================
+% LOGICA CONSCRIPT (Pattern con Indice Dinamico)
+% ==========================================
 
-% Disattiva l'ordine se non c'è l'ordine o se la salute è troppo bassa
-setOnActuator(conscriptActuator_hasAspOrder(Unit, objectIndex(Index), false)) :- objectIndex(conscriptActuator, Index), conscriptSensor_isAttackOrderPresent(Unit, _, _), not has_attack_order(Unit, _).
+% 1. Estraiamo i valori dai sensori. 
+% Usando "_" ignoriamo l'ID del sensore, evitando il mismatch con l'attuatore!
+orderStatus(Unit, true)  :- conscriptSensor_isAttackOrderPresent(Unit, objectIndex(_), true).
+orderStatus(Unit, false) :- conscriptSensor_isAttackOrderPresent(Unit, objectIndex(_), false).
+
+targetId(Unit, TargetId) :- conscriptSensor_currentGlobalObjectiveId(Unit, objectIndex(_), TargetId).
+
+% 2. Impostiamo gli attuatori agganciandoli ESCLUSIVAMENTE al loro indice (I)
+% Proprio come nel tuo esempio: setOnActuator(...) :- objectIndex(actuator, I), status(X).
+
+% Applica lo stato dell'ordine (true/false) all'attuatore
+setOnActuator(conscriptActuator_hasAspOrder(Unit, objectIndex(I), Status)) :- 
+    objectIndex(conscriptActuator, I), 
+    orderStatus(Unit, Status).
+
+% Applica il Target ID all'attuatore solo se l'ordine è true
+setOnActuator(conscriptActuator_aspTargetObjectiveId(Unit, objectIndex(I), TargetId)) :- 
+    objectIndex(conscriptActuator, I), 
+    orderStatus(Unit, true),
+    targetId(Unit, TargetId).

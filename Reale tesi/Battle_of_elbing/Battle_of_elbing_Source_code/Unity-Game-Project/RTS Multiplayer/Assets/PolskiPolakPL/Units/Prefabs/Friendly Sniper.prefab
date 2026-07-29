@@ -2408,16 +2408,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   borning: 0
   enableBrain: 1
-  debug: 0
+  debug: 1
   maintainInputFile: 1
   _chosenSensorConfigurations:
   - dispatcherSensor
   - sniperSensor
-  AIFilesPath: C:/Users/Dell/Desktop/Tesi_Vesci_Francesco/Reale tesi/Battle_of_elbing/Battle_of_elbing_Source_code/Unity-Game-Project/RTS
+  AIFilesPath: C:/Users/dodov/Desktop/Tesi_Vesci_Francesco/Reale tesi/Battle_of_elbing/Battle_of_elbing_Source_code/Unity-Game-Project/RTS
     Multiplayer/Assets/StreamingAssets\ThinkEngineer\ThinkEngine
   AIFilesPrefix:
   - Friendly_Sniper
-  prefabBrain: 1
+  prefabBrain: 0
   solverEnum: 1
   _executeReasonerOn: When Sensors are ready
   specificAIFile: 0
