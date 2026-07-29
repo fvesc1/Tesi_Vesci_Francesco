@@ -59,16 +59,16 @@ setOnActuator(aI_CommanderActuator_EmergencyAction(aI_Commander, objectIndex(Ind
 % LOGICA COMMANDER: SELEZIONE OBIETTIVO PIÙ VICINO (DLV2)
 % ==========================================================
 
-% --- 1. FATTI STATICI: Mappatura Nome Stringa -> ID Intero C# e Distanza ---
-% objectiveData(Stringa_Unity, ID_Intero_C#, Distanza_Base)
-objectiveData("objective_1", 1, 50).
-objectiveData("objective_2", 2, 90).
-objectiveData("objective_3", 3, 130).
-objectiveData("objective_4", 4, 10).
-objectiveData("objective_5", 5, 220).
-objectiveData("objective_6", 6, 270).
-objectiveData("objective_7", 7, 310).
-objectiveData("objective_8", 8, 360).
+% --- 1. FATTI STATICI: Mappatura Nome Stringa -> ID Intero C# e ordine di cattura ---
+% objectiveData(Stringa_Unity, ID_Intero_C#, ordine di cattura)
+objectiveData("objective_1", 1, 1).
+objectiveData("objective_2", 2, 5).
+objectiveData("objective_3", 3, 6).
+objectiveData("objective_4", 4, 2).
+objectiveData("objective_5", 5, 3).
+objectiveData("objective_6", 6, 4).
+objectiveData("objective_7", 7, 7).
+objectiveData("objective_8", 8, 8).
 
 
 % --- 2. CONTROLLO TRUPPE ---
